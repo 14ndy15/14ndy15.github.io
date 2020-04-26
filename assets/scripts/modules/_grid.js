@@ -19,7 +19,7 @@ class Grid {
         };
 
         let geoJsons = {
-            grid: '/public/GeoJson/milano-grid.geojson',
+            grid: '/public/GeoJson/milano-grid_all_traffic.geojson',
         };
 
         let clickFunctions = {
@@ -34,7 +34,16 @@ class Grid {
         };
 
         let styles = {
-            grid: this.CONST_PARAMETER.DEFAULT_STYLE
+            // grid: this.CONST_PARAMETER.DEFAULT_STYLE
+            grid: (feature)=>{
+                let value = feature.properties.traffic;
+                return {
+                    color: this.CONST_PARAMETER.GET_COLOR(2*value),
+                    fillColor: this.CONST_PARAMETER.GET_COLOR(2*value),
+                    fillOpacity: .55,
+                    opacity: 0
+                };
+            },
         };
 
         for (let layer in layers) {
