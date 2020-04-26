@@ -1,0 +1,58 @@
+.form{
+  position: relative;
+  width: 100%;
+  padding: .5em;
+
+  &__info{
+    position: relative;
+    width: 90%;
+    margin: 0 2.5% 1.5em 2.5%;
+    font-size: .8em;
+  }
+
+  &__item{
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    margin: .75em 0;
+
+    & label{
+      width: 47%;
+
+      &.row{
+        width: 100%;
+
+        & input{
+          width: 10%;
+        }
+      }
+
+      & span{
+        font-weight: bold;
+      }
+    }
+
+    & input, select{
+      width: 45%;
+    }
+
+    &--row{
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__actions{
+    width: 100%;
+    display: flex;
+    margin: 2em 0;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+}
+
+#matrices_simulation, label[for="matrices_simulation"]{
+  width: 100%;
+}
