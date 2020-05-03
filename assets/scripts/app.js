@@ -1,5 +1,6 @@
 import MapLeaflet from './modules/_map_leaflet';
 import Grid from "./modules/_grid";
+import Menu from "./modules/_menu";
 
 const CONST_PARAMETER = {
     DEFAULT_STYLE: {
@@ -35,3 +36,4 @@ const CONST_PARAMETER = {
 
 let mapLeaflet = new MapLeaflet(CONST_PARAMETER);
 new Grid(mapLeaflet, CONST_PARAMETER);
+new Menu();

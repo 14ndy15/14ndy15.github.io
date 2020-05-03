@@ -8,9 +8,16 @@ class Grid {
         this.mapLeaflet = mapLeaflet;
         this.map = this.mapLeaflet.map;
         this.CONST_PARAMETER = CONST_PARAMETER;
-
         this.geoJson = null;
-        this.addLayers();
+
+        this.colorRange = document.querySelector('#color_intensity');
+
+        this.layers = this.addLayers();
+        this.events();
+    }
+
+    events(){
+        this.colorRange.addEventListener('change', this.updateVisualization.bind(this));
     }
 
     addLayers() {
@@ -29,7 +36,8 @@ class Grid {
         let tooltipFunctions = {
             grid: (layer) => {
                 let cell_id = layer.feature.properties.cellId;
-                return `The cell_id is: ${cell_id}`;
+                let traffic = layer.feature.properties.traffic.toFixed(3);
+                return `The cell_id is: ${cell_id} and the traffic is ${traffic}`;
             },
         };
 
@@ -37,9 +45,10 @@ class Grid {
             // grid: this.CONST_PARAMETER.DEFAULT_STYLE
             grid: (feature)=>{
                 let value = feature.properties.traffic;
+                let intensity = this.colorRange.value;
                 return {
-                    color: this.CONST_PARAMETER.GET_COLOR(2*value),
-                    fillColor: this.CONST_PARAMETER.GET_COLOR(2*value),
+                    color: this.CONST_PARAMETER.GET_COLOR(intensity*value),
+                    fillColor: this.CONST_PARAMETER.GET_COLOR(intensity*value),
                     fillOpacity: .55,
                     opacity: 0
                 };
@@ -53,11 +62,11 @@ class Grid {
             let layerUrl = geoJsons[layer];
             axios.get(layerUrl).then((response) => {
 
-                let data = response.data;
+                this.geoJson = response.data;
 
                 layers[layer] = new Leaflet.FeatureGroup();
 
-                data["features"].forEach((feature) => {
+                this.geoJson["features"].forEach((feature) => {
 
                     let region = Leaflet.geoJSON(feature, {
                         style: styles[layer],
@@ -73,8 +82,9 @@ class Grid {
                     layers[layer].addLayer(region);
                 });
 
-
                 this.mapLeaflet.addLayer(layers[layer], layer.toString());
+
+                this.layers = layers;
 
             }).catch((error) => {
                 console.log(error);
@@ -82,6 +92,32 @@ class Grid {
 
         }
 
+
+    }
+
+    updateVisualization(){
+        let intensity = this.colorRange.value;
+
+        for (let key in this.layers.grid._layers) {
+            if (this.layers.grid._layers.hasOwnProperty(key)) {
+
+                let cell = this.layers.grid._layers[key];
+                let cell_id = cell._layers[key - 1].feature.properties.cellId;
+
+                if (this.geoJson['features'].hasOwnProperty(cell_id)) {
+
+                    let value = this.geoJson['features'][cell_id].properties.traffic;
+
+                    cell.setStyle({
+                        color: this.CONST_PARAMETER.GET_COLOR(intensity * value),
+                        fillColor: this.CONST_PARAMETER.GET_COLOR(intensity * value),
+                        fillOpacity: .65,
+                        opacity: 0
+                    });
+                }
+
+            }
+        }
     }
 }
 

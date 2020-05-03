@@ -7,21 +7,42 @@
         <meta charset="UTF-8">
     </head>
     <body>
+        <header>
+            <div class="menu-icon">
+                <div class="menu-icon__middle"></div>
+            </div>
+        </header>
         <main>
+
             <section class="map">
                 <div id="map"></div>
             </section>
-            <section class="tools">
-                <div class="tools_container">
-                    <div class="tools_by_days">
 
-                    </div>
-                    <div class="tools_by_weeks">
+            <section class="menu">
+                <div class="menu__container">
 
-                    </div>
-                    <div class="tools_by_months">
+                    <form action="">
+                        <div class="form__item form__item--row">
+                            <label class="row" for="all"><input type="radio" name="time_interval" id="all"> Show all traffics in two month </label>
+                        </div>
+                        <div class="form__item form__item--row">
+                            <label class="row" for="first_week"><input type="radio" name="time_interval" id="first_week"> Show all traffics in the first week </label>
+                        </div>
 
+                        <div class="form__item form__item--row">
+                            <label class="row" for="second_week"><input type="radio" name="time_interval" id="second_week"> Show all traffics in the first week </label>
+                        </div>
+
+                        <div class="form__item form__item--row">
+                            <label for="color_intensity">Color intensity</label>
+                            <input class="row" name="color_intensity" id="color_intensity" type="range" min="1" max="100" value="1">
+                        </div>
+                    </form>
+
+                    <div class="menu__actions">
+                        <button class="btn">Close</button>
                     </div>
+
                 </div>
             </section>
         </main>
