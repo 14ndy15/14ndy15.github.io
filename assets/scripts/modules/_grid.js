@@ -10,14 +10,18 @@ class Grid {
         this.CONST_PARAMETER = CONST_PARAMETER;
         this.geoJson = null;
 
+        // this.timeSelector = document.querySelector('.menu input[type=radio]');
         this.colorRange = document.querySelector('#color_intensity');
 
         this.layers = this.addLayers();
+
+
         this.events();
     }
 
     events(){
         this.colorRange.addEventListener('change', this.updateVisualization.bind(this));
+
     }
 
     addLayers() {
