@@ -26,7 +26,7 @@ class Grid {
         };
 
         let geoJsons = {
-            grid: '/public/GeoJson/milano-grid_all_traffic.geojson',
+            grid: '/public/GeoJson/milano_grid_first_week_traffic.geojson',
         };
 
         let clickFunctions = {
@@ -49,7 +49,7 @@ class Grid {
                 return {
                     color: this.CONST_PARAMETER.GET_COLOR(intensity*value),
                     fillColor: this.CONST_PARAMETER.GET_COLOR(intensity*value),
-                    fillOpacity: .55,
+                    fillOpacity: .45,
                     opacity: 0
                 };
             },
@@ -111,7 +111,7 @@ class Grid {
                     cell.setStyle({
                         color: this.CONST_PARAMETER.GET_COLOR(intensity * value),
                         fillColor: this.CONST_PARAMETER.GET_COLOR(intensity * value),
-                        fillOpacity: .65,
+                        fillOpacity: .45,
                         opacity: 0
                     });
                 }
