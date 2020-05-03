@@ -30,7 +30,7 @@ class Grid {
         };
 
         let geoJsons = {
-            grid: '/public/GeoJson/milano_grid_first_week_traffic.geojson',
+            grid: '/public/GeoJson/milano_grid_all_traffic.geojson',
         };
 
         let clickFunctions = {
