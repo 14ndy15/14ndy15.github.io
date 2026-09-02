@@ -373,6 +373,10 @@ hr {
     gap: 0;
   }
 
+  .teaser-image {
+    width: 100%;
+  }
+
   .sidebar-left {
     grid-column: 1;
     grid-row: 1 / 4;
