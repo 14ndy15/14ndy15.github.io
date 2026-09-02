@@ -1,5 +1,5 @@
 ---
-title: "What Happens When You Overshare? A Look into the BGP Maximum-Prefix Limit"
+title: "The Circuit Breaker That Cried Wolf: Measuring BGP Maximum-Prefix Exceedance and Connectivity Impact"
 short_title: "BGP Max Prefix Analysis"
 date: 2026-01-15
 conference: "ACM IMC 2026"
@@ -7,6 +7,15 @@ authors: "Orlando E. Martínez-Durive"
 weight: 1
 link: ""
 ---
+
+## Key Finding
+
+<figure style="text-align: center; margin: calc(var(--line-height) * 2) 0; max-width: 100%;">
+  <iframe src="/img/bgp-exceedance-cdf.pdf" style="width: 100%; height: 400px; border: 1px solid var(--text-color-alt);" title="BGP Exceedance CDF Plot"></iframe>
+  <figcaption style="font-size: 0.9rem; color: var(--text-color-alt); margin-top: 1ch;">
+    CDF of prefix exceedance magnitudes. Shows the distribution of how far ASes exceed their configured limits.
+  </figcaption>
+</figure>
 
 ## Background
 
