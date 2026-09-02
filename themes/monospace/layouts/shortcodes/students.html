@@ -6,5 +6,6 @@
   (dict "name" "Roger Casimiro" "status" "Undergraduate" "institution" "Technological University José Antonio Echeverría" "year" "2019" "topic" "Human Mobility Using Mobile Phone Records")
 }}
 
-{{ range $students }}- **{{ .name }}** ({{ .status }}, {{ .institution }}, {{ .year }}) — {{ .topic }}
-{{ end }}
+<ul>
+{{ range $students }}<li><strong>{{ .name }}</strong> ({{ .status }}, {{ .institution }}, {{ .year }}) — {{ .topic }}</li>
+{{ end }}</ul>
