@@ -1,0 +1,117 @@
+\section{Dataset \& Policies}
+
+\js{Jose will help in this section}
+
+\subsection{Description of the MNO}
+\om{It is a major global MNO that operates in UK}
+
+\subsection{Energy saving trial}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\columnwidth]{images/Example_energy_saving_dynamic.png}
+    \caption{Example of the Energy saving behavior (or dynamic). \om{I will make a better version of this image.}}
+    \label{fig:energy_saving_behaviour}
+\end{figure}
+
+\begin{figure}
+    % \centering
+    \includegraphics[width=.95\columnwidth]{images/timeline.png}
+    \caption{Policies timeline diagram \js{Align On/Off threshold descr. with Figure 1}}
+    \label{fig:enter-label}
+\end{figure}
+
+
+\textbf{General comments about the trials}
+\begin{itemize}
+    \item The operator and the antenna vendor deploy the trials.
+    \item The trials are 4, and we have a baseline that was already subjected to early deployment of an energy-saving policy over the night (11-6) but with even more conservative thresholds.
+    \item The trial only target 4G antennas
+    \item for energy efficiency purposes, cells are divided between (higher carrier frequency) capacity and (lower carrier frequency) coverage cells, and every capacity cell is paired with at least one coverage cell, which should (i) provide service to the UEs of the capacity cell, should this one shut down, and (ii) assist its wake up process. Thus, the pairing process between capacity and coverage cells is capital to the overall carrier shutdown performance.
+    \item The trial is deployed in two regions (Region A and B). See Table \ref{tab:regions} for an extensive description of the regions.
+    \item The trial targeted around $43-44$\% of the antennas in these regions
+\end{itemize}
+\\
+
+\textbf{Specifc comments about the switch off}:
+\begin{itemize}
+    \item two switch-off approaches were deployed: i) switching off the transmitting paths (Nokia LTE1203 feature) (– Load-based Power Saving with Tx Path Switching Off feature provides energy saving modes, in case of a low-load period, for cells configured for MIMO operations in the LTE technology.) and ii) switching off the entire cell (Nokia LTE1103 feature).
+    \item Each eNB independently decides the power-saving state of its power group cells. LTE1203 does not support any X2 data exchange between eNBs.
+\end{itemize}
+\\
+
+\textbf{When the antenna switches off}:
+\begin{itemize}
+    \item During the time of the day defined by the user/operator for cell switch off.
+    \item There are no ongoing emergency calls and no queued messages for Earthquake and Tsunami Warning System (ETWS) or Commercial Mobile Alert System (CMAS) in the cell.
+    \item The complete load of the cells in the power saving group is below the low load threshold (evaluation period 5 minutes).
+    \item The estimated complete load immediately after cell switch-off for the remaining active cells in the power-saving group does not exceed the high load threshold.
+\end{itemize}
+\\
+
+\textbf{What happens when the antenna switches off}:
+\begin{itemize}
+    \item A cell that is being shutdown will utilize the LTE914 Graceful Cell Shutdown feature to ramp down power to allow UE to HO prior to being shut off.
+    \item UEs at the edge of the impacted cell experience a drop in signal strength. These UEs may initiate handover to neighboring cells with a better signal strength. 
+    \item The load is increased at the neighboring cells, but the overall power group load is maintained if the handover is to another cell in the power group.
+    \item UEs at the new edge of the impacted cell experience a slight drop in signal strength; the drop is not sufficient to initiate handover.
+    \item UEs at the center of the power group coverage area; if too many UEs hand over from the impacted power group cell to other cells serving the same coverage area, then load equalization may redistribute some UEs at the center of the other power group cells into the impacted power group cell.
+\end{itemize}
+
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{c c c c c}
+        & On & Off & Duration & Frequencies \\
+        \hline
+         Current & -  & - & - & - \\
+         PoC & - & - & One week & - \\
+         11-6 & 5\% & 10\% & One week & 900, 1800, 2100 \\ 
+         24x7 (1) & 5\%  & 10\% & One week & 900, 1800, 2100 \\ 
+         24x7 (2) & 7\%  & 12\% & One week & 900, 1800, 2100\\ 
+         24x7 (3) & 10\%  & 15\% & One week & 900, 1800, 2100 \\ 
+    \end{tabular}
+    \caption{Energy saving policies. \om{The policy is activated when the load is lower than the Activate threshold, or what is the antenna is switched off when the load is less than Activate and is turned on when the load is higher than Deactivate.}}
+    \label{tab:my_label}
+\end{table}
+
+\subsection{Regions under study}
+
+\om{now that we define the trials, we can comment about the regions}
+
+
+The areas where the trial was deployed are as follows:
+See Table \ref{tab:regions} for an extensive description of the regions.
+
+
+\begin{itemize}
+    \item \st{Density: \# Antennas per $km^2$}
+    \item \st{Average number of antennas per site}
+    \item \st{Fraction of technology (2G, 3G, 4G, 5G) per area.}
+\end{itemize}
+
+\begin{table*}[ht]
+    \centering
+    \begin{tabular}{lcccccc}
+    \toprule
+     & Trial & Urbanization & Area $km^2$ & Density & Antennas per site & 4G \\
+    \midrule
+    Region A & Yes & Rural & 12682.36 & 0.19 & $8.6 \pm 6.20$ & 0.55\% \\
+    Region B & Yes & Suburban & 449.63 & 4.46 & $8.6 \pm 7.07$ & 0.65\% \\
+    Region C & No & Urban & 523.73 & 16.14 & $5.7 \pm 6.71$ & 0.62\% \\
+    \bottomrule
+    \end{tabular}
+    
+    \caption{Description of the regions under study \om{I)be explicit about Region C (greater London was not part of the trials, and we are using it as a reference), ii) The stats about density and antennas per site are about 4G Antennas only, iii) we cannot report density and area together otherwise you can recover the number of antennas}}
+    \label{tab:regions}
+\end{table*}
+
+\subsection{Data feeds}
+
+We rely on two main sources of data: 
+
+\textbf{Network deployment}:
+this dataset contains the data regarding antenna locations, height, tilt, azimuths, and also their communication features such as radio access technology (generation), frequency, and beam width... this dataset is updated daily to reflect new antennas being added and removed. 
+
+\textbf{Key performance indicators}:
+A measurement (proptima) dataset reports hundreds of KPIs about the status of the antennas. The temporal resolution is hourly, making it harder to look within the hours, but for some applications, it is possible.

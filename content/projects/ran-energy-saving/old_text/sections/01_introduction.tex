@@ -1,0 +1,71 @@
+\section{Introduction}
+
+
+%\om{We can start by commenting on how mobile operators are dedicating time and resources to achieve the goal of reducing carbon emission}
+
+The last decade of research, innovation and standardization in 5G have brought advancements to every aspect of cellular systems. 
+At the same time, these also translate into a steep increase in terms of the energy consumption by the telco sector. 
+With 5G word population coverage reaching 45\% at the end of 2023,\footnote{https://www.ericsson.com/en/reports-and-papers/mobility-report/dataforecasts/network-coverage} the high costs associated with deploying, configuring, and operating 5G equipment concurrently with legacy deployments remains a major hurdle toward realizing the urgent climate target on sustainability and energy efficiency~\cite{huawei_report}.
+In particular, reducing the energy and carbon footprint for the telecommunication industry is of paramount importance:
+in 2019, a set of operators set the goal of reducing their carbon emissions by 45\% from 2020 to 2030\cite{gsma20205g}.
+\ael{are we doing anything around the carbon emissions? I'd tend to keep here only the main metrics that we end up using later on in the paper.}
+%In the following years, the number of companies joining this goal has been increasing, totaling up to 70 operators worldwide, setting a new goal of reaching net zero by 2050\cite{gsm2024mobile}.
+%For example, Orange has committed to being Net Zero Carbon by 2040 via energy efficiency, renewable energy, the circular economy, or carbon capture~\cite{OrangeCommitment}.
+%Nokia is putting special effort into artificial intelligence solutions to reduce the carbon footprint, with estimates of up to 30\% energy savings and less CO2 emission for telecommunications radio networks~\cite{held2021artificial}.
+
+%The 2021's GSMA report\cite{green2021going} mentions that the majority of energy (73\%) is consumed in the RAN. 
+The bulk of a mobile network's energy consumption (73\%) corresponds to operating the RAN, and it accounts for ensuring the coverage across thousands of square kilometers, transforming energy into radio waves, and receiving and processing incoming signals.
+Approaches such as carrier shutdown, channel shutdown, symbol shutdown that have been emerged ever since the 4G era are helpful solving the 5G energy consumption, but remain insufficient. 
+%Though they help the network adapt to the demand in resources
+%The remaining consumption distribution comprises data centres (9\%), core (13\%), and operations (5\%).
+%\om{Then we move to this is possible to achieve through different ways, like changing the energy sources, and sunsetting other technologies like 2G and 3G, but a substantial amount of work has also been towards increasing the energy efficiency
+As end-user connectivity demand soars, operators are looking for a good trade-off between decreasing their networks' energy footprint through adaptive strategies to dynamically power on/off their radio deployments, and their service performance towards users.  
+%In other words, as a solution to reduce their network's energy consumption, \acp{MNO} choose to limit selected antennas' operation time. 
+%With this approach, operators require special attention and planning to avoid impacting the end-user quality of experience.
+% \om{we comment a bit about the difficulty of this approach}
+Existing strategies for energy consumption are usually conservative in terms of the breadth of network resources that they impact~\cite{Tan2022}.
+This further ensures reduced controlled impact in terms of network performance. 
+
+
+Energy-saving involves various trade-offs, as was seen in the section on shutdown capabilities. 
+One trade-off is between network performance and energy saving. Based on the impact on performance, many energy-saving are lossy as they scale resources and the number of resources is closely related to performance. Therefore, it is difficult to achieve lossless performance\cite{Tan2022}.
+
+It should be noted that most of these works assume that the traffic of the shutting down cells is ofﬂoaded to a predeﬁned and fully overlapping neighboring cell. This is far from reality, where the trafﬁc of a shutdown cell cannot be guaranteed to be transferred to a specific desired cell,
+
+Theoretical tools have also been developed to aid network energy efficiency optimization. 
+
+%Previous work has shown that 
+Optimal sleeping policies for a single server have been derived only for non-bursty traffic in prior work.\cite{two_thresholds_traffic}.  The optimal sleeping policy is shown to be a two-threshold policy with a wait-and-see feature, i.e., the server would wait a period of time to see if there are any extra arrivals before switching modes.
+
+Even if there are no theoretical results available for more than one server, the findings of this work are in line with today's carrier shutdown solutions, which implement two different sets of conditions for shutdown and reactivation \cite{data_driven_energy23}
+
+\om{and we can close by saying that this approach also contributes to cost reduction and lower energy bills, and we jump to the contributions}
+
+\begin{table}[!t]
+    \caption{Energy saving policies tested by the MNO. 
+    %\textit{Baseline} represents the policy deployed before the trials.
+    } \label{tab:mno-trials}
+    \vspace{-2mm}
+    \resizebox{1.0\columnwidth}{!}{%
+    \centering
+    \begin{tabular}{l l c c c c}
+    &  & & \multicolumn{2}{c}{\textbf{Thresholds}} &  \\
+    \cline{4-5}
+        & \textbf{Trial period} & \textbf{Active Time Interval} & \textbf{On} & \textbf{Off} & \textbf{Time To Trigger}  \\
+        \hline
+         %Baseline & -  & - & - & Feb 8th - Feb 15th \\
+         %PoC & - & - & One week & - \\
+         \#1 & Feb 22 - Mar 1 & 23h - 6h (night) & 5\% & 10\% & 5 mins \\ 
+         \#2 & Mar 1 - Mar 8 & 24h (all day) & 5\%  & 10\% & 5 mins  \\ 
+         \#3 & Mar 8 - Mar 15& 24h (all day) & 7\%  & 12\% & 5 mins   \\ 
+         \#4 & Mar 15 - Mar 22 & 24h (all day) & 10\%  & 15\% & 5 mins  \\ 
+    \end{tabular}
+    }
+\end{table}
+
+\om{Some of the contributions of this work:}
+\begin{itemize}
+    \item Evaluate and assess fixed threshold-based energy-saving approaches in a live network.
+    \item our findings show that using a single pair of thresholds for all the antennas without accounting for the intrinsic characteristics of the region may fall short
+    \item our findings motivate a deeper study and proposal that may be antenna-tailor and or data-driven to increase the efficiency and reduce energy. also, we distill some recommendations that may help further optimize energy-saving policies.
+\end{itemize}

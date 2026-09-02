@@ -1,0 +1,75 @@
+\vspace{-2pt}
+\section{Introduction}
+\label{sec:introduction}
+\vspace{-4pt}
+
+%\om{We can start by commenting on how mobile operators are dedicating time and resources to achieve the goal of reducing carbon emission}
+% As humans reshape the world, digitalization inevitably increases energy consumption, with devastating consequences in terms of the climate emergency.
+% Mobile networks have the potential to provide additional flexibility in a world of connected people and things in sustainable societies and economies.
+% In this context, the last decade of research, innovation and standardization in 5G have brought advancements to every aspect of cellular systems. 
+% At the same time, these too translate into a steep increase in terms of the energy consumption by the telco sector. 
+
+Energy efficiency is one of the major challenges that mobile network operators (MNOs) face today, as operating very large and power-hungry mobile network infrastructures is becoming increasingly complicated by rapidly growing energy costs and global climate emergency awareness.
+There is therefore a strong drive towards making mobile communication systems more sustainable both in economic terms, \ie reducing operating expenses linked with the power consumption of network equipment, and environmental terms, \ie improving the social acceptability of the cost that pervasive digital services entail for the planet.
+As a result, all major MNOs and equipment vendors are nowadays making substantial efforts to investigate strategies to reduce their energy and carbon footprint~\cite{huawei_report} and meet the goals set by global policymakers~\cite{gsma20205g, gsm2024mobile}.
+
+The bulk of the energy consumption in mobile networks is associated to Radio Access Network (RAN) operation, which accounts for 73\% of the total energy costs incurred by a typical operator according to GSMA~\cite{green2021going}.
+%The remaining consumption distribution comprises data centres (9\%), core (13\%), and operations (5\%).
+Indeed, RAN equipment performs power-intensive functions for signal processing and transmission at tens of thousands of base stations that ensure coverage across territories of thousands of square kilometers.
+Moreover, the co-existence of overlaid Radio Access Technologies (RATs) belonging to different generations like 2G, 3G, 4G and 5G, coupled with challenges in sunsetting the older ones, exacerbates the problem of high RAN energy footprint.
+
+On the bright side, RANs are also highly redundant systems, since they have to cope with strong spatial and temporal fluctuations in the user demands. For instance, mobile traffic loads are dramatically different in urban and rural areas~\cite{digital_divide_sachit}, are known to feature circadian rhythms with high volumes during daylight hours that drop overnight~\cite{mobile_rhythms_esteban, brunolepri2016countrywide}, and show prominent peaks occurring at specific moments of the day that change depending on the location considered~\cite{tale_10_cities_marco}. To efficiently serve such time-varying demands, modern RANs have a layered design with multiple antennas that cover a same geographical area at different frequency bands and that jointly provide the capacity needed to serve the local traffic peaks.
+
+This layered architecture paves the way for a dynamic management of the RAN where equipment %providing capacity 
+that is not needed to sustain the demand in a specific time period can be turned off, hence reducing its associated energy cost. Options supported by present RAN hardware include shutting down individual symbols, radio channels or whole carriers, which offer diverse levels of flexibility and savings~\cite{survey_5g_energy_efficiency, user_transfer_5g}.
+%
+However, the problem of deciding when to switch-off or switch-on %again 
+RAN elements is extremely complex since sustainability goals inherently conflict with the strict requirements that mobile networks are expected to meet in terms of availability, reliability, throughput, or latency.
+%
+While a plethora of proposals exist in the scientific literature, they mostly are, as later expounded in Section~\ref{sec:related}, theoretical or simulation studies that do not consider: ($i$)~the limitations imposed by industry-grade RAN hardware that cannot be instantaneously and perfectly controlled,
+%\om{I need help here},
+($ii$)~the striking heterogeneity of real-world user demands that are instead modeled with simplistic measurement data~\cite{survey_5g_energy_efficiency, user_transfer_5g}, or ($iii$)~the exact impact of RAN configuration changes on users' experience that are arduous to establish~\cite{auric,chroma,data_driven_energy23}.
+
+These aspects are crucial for production mobile networks serving actual users, where even minimal and localized degradation of the users’ Quality of Experience (QoE) is unacceptable, since it would entail, \eg bursts of calls to customer service, the backlash on social media and ultimately churn in a very competitive market.
+%All these aspects are instead essential when it comes to production mobile networks that serve actual users. Here, no degradation of the users' Quality of Experience (QoE), although minimal and localized, is admissible, since it would entail, \eg bursts of calls to customer service, backlash on social media and ultimately churn in a very competitive market.
+%
+These very real and significant penalties cause players in the mobile ecosystem to be highly conservative in RAN sustainability. Even leading MNOs currently adopt basic and cautious strategies that only switch-off a minimum portion of the RAN equipment overnight~\cite{Tan2022}.
+
+In this context, it is difficult to understand if more ambitious targets for RAN sustainability can be achieved in production. In this paper, we shed some light on this subject, by presenting the setup, measurements and results of trials executed at scale in a production network where diverse energy saving strategies were tested for several weeks. Our work sets forth the following main contributions.
+\begin{itemize}[leftmargin=*]
+    \item We present an unprecedented benchmarking of five different cell sleep strategies for %the switch-on/off of RAN carriers 
+    RAN energy savings that are based on %capacity 
+    utilization thresholds and %are deployed in real-world production RANs
+    that were tested in the RAN of a top-tier MNO in a Western European country, covering two regions with diverse urbanization levels.
+    \item We characterize the switch-on/off process that each strategy induces on the real-world RAN using several Key Performance Indicators (KPIs) for measuring cell downtime, energy consumption, and impact on users' throughput.
+    %using several Key Performance Indicators (KPIs) collected hourly and measuring the impact on end-user throughput.
+    \item We evaluate the gains of the different strategies in terms of energy savings for the MNO, using a realistic energy consumption model, and show that the reduction in power consumption varies dramatically not only across strategies but also among regions and individual carriers.
+    % \js{Will we show the results for individual carriers?}\mf{I was referring to the candlesticks where samples are carriers}
+    \item We capture for each strategy the trade-off between the achieved energy savings and %the impact on the real-world 
+    the impact on end-user performance, using user throughput as a reference. The results reveal that throughput variations are remarkably heterogeneous across cells in different locations.
+    %takes extremely varied forms based on the considered carrier.
+\end{itemize}
+
+%As end-user connectivity demand soars, operators are looking for a good trade-off between decreasing their networks' energy footprint through adaptive strategies to dynamically power on/off their radio deployments, and their service performance towards users.  
+%In other words, as a solution to reduce their network's energy consumption, \acp{MNO} choose to limit selected antennas' operation time. 
+%With this approach, operators require special attention and planning to avoid impacting the end-user quality of experience.
+% \om{we comment a bit about the difficulty of this approach}
+
+% With 5G word population coverage reaching 45\% at the end of 2023,\footnote{https://www.ericsson.com/en/reports-and-papers/mobility-report/dataforecasts/network-coverage} the high costs associated with deploying, configuring, and operating 5G equipment concurrently with legacy deployments remains a major hurdle toward realizing the sector's target on sustainability and energy efficiency.
+% In particular, reducing the energy and carbon footprint for the telecommunication industry is of paramount importance:
+% in 2019, a set of operators set the goal of reducing their carbon emissions by 45\% from 2020 to 2030\cite{gsma20205g}.
+% \ael{are we doing anything around the carbon emissions? I'd tend to keep here only the main metrics that we end up using later on in the paper.}
+% %In the following years, the number of companies joining this goal has been increasing, totaling up to 70 operators worldwide, setting a new goal of reaching net zero by 2050\cite{gsm2024mobile}.
+% %For example, Orange has committed to being Net Zero Carbon by 2040 via energy efficiency, renewable energy, the circular economy, or carbon capture~\cite{OrangeCommitment}.
+% %Nokia is putting special effort into artificial intelligence solutions to reduce the carbon footprint, with estimates of up to 30\% energy savings and less CO2 emission for telecommunications radio networks~\cite{held2021artificial}.
+
+% Energy-saving involves various trade-offs, as was seen in the section on shutdown capabilities. 
+% One trade-off is between network performance and energy saving. Based on the impact on performance, many energy-saving are lossy as they scale resources and the number of resources is closely related to performance. Therefore, it is difficult to achieve lossless performance\cite{Tan2022}.
+
+%\om{and we can close by saying that this approach also contributes to cost reduction and lower energy bills, and we jump to the contributions}
+
+Ultimately, our work provides a first-of-its-kind deep dive into the operation of energy saving policies in production, and points at clear directions for the design of RAN sustainability strategies that are both effective and viable in practice.
+%\mf{We may want to anticipate those directions here --see the text commented in \LaTeX}
+%\js{Mention carbon-aware policies?}\jo{I put something regarding this in the discussion, maybe part can be repeated here}
+% using a single pair of thresholds for all the antennas without accounting for the intrinsic characteristics of the region may fall short
+% our findings motivate a deeper study and proposal that may be antenna-tailor and or data-driven to increase the efficiency and reduce energy. Also, we distill some recommendations that may help further optimize energy-saving policies.

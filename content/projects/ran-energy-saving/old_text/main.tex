@@ -1,0 +1,435 @@
+%%
+%% This is file `sample-sigconf.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% samples.dtx  (with options: `all,proceedings,bibtex,sigconf')
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from sample-sigconf.tex.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file samples.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+%%
+%%
+%% Commands for TeXCount
+%TC:macro \cite [option:text,text]
+%TC:macro \citep [option:text,text]
+%TC:macro \citet [option:text,text]
+%TC:envir table 0 1
+%TC:envir table* 0 1
+%TC:envir tabular [ignore] word
+%TC:envir displaymath 0 word
+%TC:envir math 0 word
+%TC:envir comment 0 0
+%%
+%%
+%% The first command in your LaTeX source must be the \documentclass
+%% command.
+%%
+%% For submission and review of your manuscript please change the
+%% command to \documentclass[manuscript, screen, review]{acmart}.
+%%
+%% When submitting camera ready or to TAPS, please change the command
+%% to \documentclass[sigconf]{acmart} or whichever template is required
+%% for your publication.
+%%
+%%
+\documentclass[10pt,sigconf,letterpaper,anonymous,nonacm]{acmart}
+
+%%
+%% \BibTeX command to typeset BibTeX logo in the docs
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    Bib\TeX}}}
+
+%% Rights management information.  This information is sent to you
+%% when you complete the rights form.  These commands have SAMPLE
+%% values in them; it is your responsibility as an author to replace
+%% the commands and values with those provided to you when you
+%% complete the rights form.
+\setcopyright{acmlicensed}
+\copyrightyear{2018}
+\acmYear{2018}
+\acmDOI{XXXXXXX.XXXXXXX}
+
+%% These commands are for a PROCEEDINGS abstract or paper.
+\acmConference[Conference acronym 'XX]{Make sure to enter the correct
+  conference title from your rights confirmation emai}{June 03--05,
+  2018}{Woodstock, NY}
+%%
+%%  Uncomment \acmBooktitle if the title of the proceedings is different
+%%  from ``Proceedings of ...''!
+%%
+%%\acmBooktitle{Woodstock '18: ACM Symposium on Neural Gaze Detection,
+%%  June 03--05, 2018, Woodstock, NY}
+\acmISBN{978-1-4503-XXXX-X/18/06}
+
+
+%%
+%% Submission ID.
+%% Use this when submitting an article to a sponsored event. You'll
+%% receive a unique submission ID from the organizers
+%% of the event, and this ID should be used as the parameter to this command.
+%%\acmSubmissionID{123-A56-BU3}
+
+%%
+%% For managing citations, it is recommended to use bibliography
+%% files in BibTeX format.
+%%
+%% You can then either use BibTeX with the ACM-Reference-Format style,
+%% or BibLaTeX with the acmnumeric or acmauthoryear sytles, that include
+%% support for advanced citation of software artefact from the
+%% biblatex-software package, also separately available on CTAN.
+%%
+%% Look at the sample-*-biblatex.tex files for templates showcasing
+%% the biblatex styles.
+%%
+
+%%
+%% The majority of ACM publications use numbered citations and
+%% references.  The command \citestyle{authoryear} switches to the
+%% "author year" style.
+%%
+%% If you are preparing content for an event
+%% sponsored by ACM SIGGRAPH, you must use the "author year" style of
+%% citations and references.
+%% Uncommenting
+%% the next command will enable that style.
+%%\citestyle{acmauthoryear}
+
+\usepackage[printonlyused]{acronym}
+\usepackage{subcaption}
+\usepackage{soul}
+\usepackage{amssymb}
+\usepackage{ragged2e}
+
+\newcommand{\mf}[1]{\textcolor{red}{[Marco -- #1]}}
+\newcommand{\om}[1]{\textcolor{purple}{[Orlando -- #1]}}
+\newcommand{\js}[1]{\textcolor{blue}{[Jose -- #1]}}
+\newcommand{\ael}[1]{\textcolor{orange}{[Andra -- #1]}}
+\newcommand{\jo}[1]{\textcolor{teal}{[Jesus -- #1]}}
+
+
+\input{sections/acronyms}
+%%
+%% end of the preamble, start of the body of the document source.
+\begin{document}
+
+%%
+%% The "title" command has an optional parameter,
+%% allowing the author to define a "short title" to be used in page headers.
+%\title{Energy-Saving Policies in Base Stations: Assessing Current Strategies and Their Impact}
+\title{Energy Savings in the RAN: A/B Testing Fixed Threshold-Based Strategies in Production}
+
+%%
+%% The "author" command and its associated commands are used to define
+%% the authors and their affiliations.
+%% Of note is the shared affiliation of the first two authors, and the
+%% "authornote" and "authornotemark" commands
+%% used to denote shared contribution to the research.
+\author{Ben Trovato}
+\authornote{Both authors contributed equally to this research.}
+\email{trovato@corporation.com}
+\orcid{1234-5678-9012}
+\author{G.K.M. Tobin}
+\authornotemark[1]
+\email{webmaster@marysville-ohio.com}
+\affiliation{%
+  \institution{Institute for Clarity in Documentation}
+  \city{Dublin}
+  \state{Ohio}
+  \country{USA}
+}
+
+%%
+%% By default, the full list of authors will be used in the page
+%% headers. Often, this list is too long, and will overlap
+%% other information printed in the page headers. This command allows
+%% the author to define a more concise list
+%% of authors' names for this purpose.
+\renewcommand{\shortauthors}{Trovato et al.}
+
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
+\begin{abstract}
+Reducing energy consumption is a primary goal for the mobile telecommunication industry, with strong environmental and economic sustainability implications. The main target for savings is the Radio Access Network (RAN), which is responsible for 73\% of the total energy costs incurred by operators.
+The go-to strategy here is reducing the number of active RAN carriers at locations and times where the demand is reduced and can be served with a smaller wireless capacity.
+While the scientific community has been proposing a plethora of complex solutions to switch-off underutilized carriers, production networks largely rely nowadays on static threshold-based strategies that run at individual RAN equipment and are thus very simple to deploy.
+However, there are no real-world evaluations about the effectiveness of such approaches in reducing energy consumption and about their impact on the end users.
+In this paper, we present an A/B testing of four different fixed threshold-based carrier switch-off methods deployed in production networks serving large geographical regions.
+Our study suggests that the capability of such strategies of reducing the energy costs hits a clear barrier if the end users' throughput must be preserved, and provides a strong empirical basis in support of more flexible approaches to save energy at the RAN.
+%
+%However, special attention and planning are needed to avoid reducing the user quality of experience, such as a lack of service or a significant drop in metrics like throughput. This work focuses on the impact of four different energy-saving approaches deployed on a live network in Europe and how they impact the network's performance and the users' Quality of Service.
+\end{abstract}
+
+%%
+%% The code below is generated by the tool at http://dl.acm.org/ccs.cfm.
+%% Please copy and paste the code instead of the example below.
+%%
+\begin{CCSXML}
+<ccs2012>
+   <concept>
+       <concept_id>10003033.10003079.10011704</concept_id>
+       <concept_desc>Networks~Network measurement</concept_desc>
+       <concept_significance>500</concept_significance>
+       </concept>
+   <concept>
+       <concept_id>10003033.10003079.10003082</concept_id>
+       <concept_desc>Networks~Network experimentation</concept_desc>
+       <concept_significance>500</concept_significance>
+       </concept>
+   <concept>
+       <concept_id>10003033.10003079.10011672</concept_id>
+       <concept_desc>Networks~Network performance analysis</concept_desc>
+       <concept_significance>500</concept_significance>
+       </concept>
+ </ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Networks~Network measurement}
+\ccsdesc[500]{Networks~Network experimentation}
+\ccsdesc[500]{Networks~Network performance analysis}
+
+
+%%
+%% Keywords. The author(s) should pick words that accurately describe
+%% the work being presented. Separate the keywords with commas.
+\keywords{Energy saving, Radio Access Network, carrier switch-off}
+%% A "teaser" image appears between the author and affiliation
+%% information and the body of the document, and typically spans the
+%% page.
+
+\received{20 February 2007}
+\received[revised]{12 March 2009}
+\received[accepted]{5 June 2009}
+
+%%
+%% This command processes the author and affiliation and title
+%% information and builds the first part of the formatted document.
+\maketitle
+
+\input{sections/01_introduction}
+
+\section{Previous works}
+\js{Move this section before the conclusions?}
+
+\input{sections/02_previous_work}
+
+ % Section 3: Policies \& Dataset
+\input{section-3-v2
+}
+
+
+\subsection{Evaluation metrics}
+\js{Move this to Sec 4??}
+
+A main aspect behind optimizing energy saving in the RAN is evaluating the tradeoff between the energy saved and the impact on the users' performance\cite{Tan2022}. Thus, we take as a reference the following metrics as a proxy to monitor this tradeoff across the different policies and regions tested in the trials: 
+
+\textbf{Total Downtime:} It measures the portion of PRBs utilized across all LTE cells in the regions. It serves as a proxy of the 
+
+\textbf{Portion of cells affected:} It measures the portion of capacity cells where the energy saving policy applied at least 1\% of the time over the 1-week trial period.
+
+\textbf{Overall Physical Resource Block Utilization:} It measures the portion of PRBs utilized across all LTE cells in the tested region. We use it as a proxy of the network congestion in that area.
+
+\textbf{User average throughput:} \js{or delta throughput?}
+
+\js{Motivate how these metrics help measure the tradeoff energy saving vs performance. Do we have a reference to support that the downtime/uptime is a good proxy for estimating energy consumption?}
+
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=.95\columnwidth]{images/policies_evaluation/avail_kpi_example.pdf}
+%     \caption{Example of the availability KPI}
+%     \label{fig:avail_kpi}
+% \end{figure}
+
+%One of the KPIs reported is the Antenna availability, defined as the number of seconds that the antennas was active in an hour. An example is provided in Figure~\ref{fig:avail_kpi}.
+
+\section{Energy saving policies in action}
+
+As a first step we measure the percentage of downtime that the capacity booster experience during each week of trials. Fig~\ref{fig:percentage_downtime_capacity} show the results for each region. The policy \textit{24h (10/15)} switch off the carries for around 40\% of the time, that represent 67 carrier/hours. Interestingly the \textit{baseline} perform  relative similar to the \textit{24h (5/10)} policy.
+In order to explore the reason behaving this metric, we explore how many capacity boosters meet the thresholds condition, show in Fig.~\ref{fig:fraction_antennas_affected}, and the percentage of time that this downtime of this fraction of antennas. Although the trials target around $44\%-47\%$ of the antennas in the regions, not all the antennas meet the switch-off thresholds.
+
+A different view of the dynamic is showed on Fig.~\ref{fig:avail_policies_week} where it represent the mean average availability of the capacity boosters. As can be see, each policy presents a different behaviour.
+
+
+In this section, we  take as a reference the week of Feb 8 to Feb 15, where there was a less dynamic energy saving policy (hereafter, \textit{Baseline}) deployed by the MNO at the country level. 
+
+we define some sets to study the impact: I) the full TAC, ii) the set of antennas targeted by the policy that actually was affected, iii) the set of antennas targeted by the policy that was NOT affected, and iv) the set of antennas receiving the demand after the antennas switch off.
+
+\begin{figure}
+    \centering
+    \subfloat[Region A]{\includegraphics[width=.5\columnwidth]{images/policies_evaluation/percentage_downtime_capacity_booster_southeast.pdf}}
+    \subfloat[Region B]{\includegraphics[width=.5\columnwidth]{images/policies_evaluation/percentage_downtime_capacity_booster_north_london.pdf}}
+    \caption{Capacity booster \% of downtime across policies and regions}
+    \label{fig:percentage_downtime_capacity}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \subfloat{
+    \includegraphics[width=.8\columnwidth]{images/policies_evaluation/fraction_affected_antennas_and_up_time_legend.pdf}}
+    \setcounter{subfigure}{0}
+    \subfloat[Region A]{
+    \includegraphics[width=.5\columnwidth]{images/policies_evaluation/fraction_affected_antennas_and_up_time_southeast.pdf}}
+    \subfloat[Region B]{
+    \includegraphics[width=.5\columnwidth]{images/policies_evaluation/fraction_affected_antennas_and_up_time_north_london.pdf}}
+    \caption{Percentage of the capacity booster affected by the trials. Not all the capacity boosters meet the thresholds condition.
+    % \mf{\st{Fonts too small.} Also, the two 'shades' of color in the bottom are hard to tell apart, can you use brighter/darker colors so as to differentiate better? \om{I change the colors, are they better now?}}
+    }
+    \label{fig:fraction_antennas_affected}
+\end{figure}
+
+
+\begin{figure*}
+    % \Raggedleft
+    \subfloat{\includegraphics[width=.48\textwidth]{images/policies_evaluation/avail_kpi_switch_off_legend.pdf}}
+    \setcounter{subfigure}{0}
+    \centering
+    \subfloat[Region A]{
+    \includegraphics[width=.95\textwidth]{images/policies_evaluation/avail_kpi_switch_off_set_southeast_mean_std_new.pdf}
+    }
+    
+    \subfloat[Region B]{
+    \includegraphics[width=.95\textwidth]{images/policies_evaluation/avail_kpi_switch_off_set_north_london_mean_std_new.pdf}
+    }
+    \caption{Capacity booster average availability, over the trials.}
+    \label{fig:avail_policies_week}
+\end{figure*}
+
+
+\begin{figure}
+    \centering
+    \subfloat{
+    \includegraphics[width=.85\columnwidth]{images/policies_evaluation/fraction_of_available_antennas_legend.pdf}}
+    \setcounter{subfigure}{0}
+    \subfloat[Region A]{
+    \includegraphics[width=.5\columnwidth]{images/policies_evaluation/fraction_of_available_antennas_southeast.pdf}}
+    \subfloat[Region B]{
+    \includegraphics[width=.5\columnwidth]{images/policies_evaluation/fraction_of_available_antennas_north_london.pdf}}
+    \caption{Fraction of the network available over an average day.}
+    \label{fig:fraction_network_available}
+\end{figure}
+
+
+
+\begin{figure}
+    \centering    \subfloat{\includegraphics[width=.85\columnwidth]{images/policies_evaluation/delta_kpi_legend.pdf}}
+    % \setcounter{subfigure}{0}
+    % \subfloat{
+    % \includegraphics[width=.48\columnwidth]{images/policies_evaluation/df_tac_policy_delta_t_4g_tti_utilisation_southeast.pdf}}
+    % \subfloat{
+    % \includegraphics[width=.48\columnwidth]{images/policies_evaluation/df_tac_policy_delta_t_4g_tti_utilisation_north_london.pdf}}
+    
+    \subfloat[Region A]{
+    \includegraphics[width=.48\columnwidth]{images/policies_evaluation/df_tac_policy_delta_t_4g_user_average_throughput_southeast.pdf}}
+    \subfloat[Region B]{
+    \includegraphics[width=.48\columnwidth]{images/policies_evaluation/df_tac_policy_delta_t_4g_user_average_throughput_north_london.pdf}}
+    \caption{Relative change in antenna utilization and user download throughput. 
+    % \mf{Do we need to the top plots? They do not add to the story}\om{we can remove it IMO}
+    }
+    \label{fig:tti_utilization}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \subfloat[Region A]{
+    \includegraphics[width=.5\columnwidth]{images/policies_evaluation/percentage_aggressiveness_vs_throughput_boxplot_daylight_southeast.pdf}}
+    \subfloat[Region B]{
+    \includegraphics[width=.5\columnwidth]{images/policies_evaluation/percentage_aggressiveness_vs_throughput_boxplot_daylight_north_london.pdf}}
+    \caption{Policy \textit{Aggressiveness} with respect to average throughput.}
+\end{figure}
+
+
+\begin{figure}
+    \centering
+    \subfloat[23-6]{
+    \includegraphics[width=.485\columnwidth]{images/policies_evaluation/throughput_nearby_antennas_southeast_11_6_scatter.pdf}}
+    \subfloat[24h (5/10)]{\includegraphics[width=.485\columnwidth]{images/policies_evaluation/throughput_nearby_antennas_southeast_24x7_1_scatter.pdf}}
+
+    \subfloat[24h (7/12)]{
+    \includegraphics[width=.485\columnwidth]{images/policies_evaluation/throughput_nearby_antennas_southeast_24x7_2_scatter.pdf}}
+    \subfloat[24h (10/15)]{\includegraphics[width=.485\columnwidth]{images/policies_evaluation/throughput_nearby_antennas_southeast_24x7_3_scatter.pdf}}
+    
+    \caption{Average throughput of the antennas in the same sector of the capacity booster. Each dot represent a capacity booster, the value in the x-axis represent the down time, while the value in the y-axis is the average change in throughput of the antennas in the same sector with respect the baseline period.}
+\end{figure}
+
+\begin{itemize}
+    \item Trials evaluation 
+    \begin{itemize}
+        \item \checkmark Fig.~\ref{fig:fraction_antennas_affected}.Which fraction of the antennas were affected? The difference between the antenna being part of the trial and the antenna being \textbf{actually} affected by the trial.
+        
+        \item Mean up-time over the trial with error bars
+        
+        \item \checkmark Fig.~\ref{fig:fraction_network_available} Fraction of the network available over an average day. \om{\st{Color a shade of grey below the coverage line to highlight that you cannot switch off more than this}.}
+        
+        \item Jesus plot, increase in utilization vs throughput.
+
+        
+        \item \checkmark Fig.~\ref{fig:tti_utilization_in_region} Average relative PRB utilization (PRB utilization/Available PRB) \om{Jose asked for a version of this plot only for the antennas affected by the switch off Fig.~\ref{fig:tti_utilization_in_receiving_antennas}.}
+
+        
+        \item Plot based on the tti utilization (t\_4g\_tti\_utilisation)
+        
+        \item how much the antennas are being switched off/on? (number of transitions)
+        
+        \item \st{Plot based on the tti utilization} (active\_tti\_dl) \om{it is the same as t\_4g\_tti\_utilisation}.
+        
+        \item \st{we can also show that it doesn't matter that we are picking some KPIs coz they correlate among them}
+        
+        \item \checkmark Fig.~\ref{fig:user_throughput_in_region} and Fig.~\ref{fig:user_throughput_in_receiving_antennas} User average throughput
+    \end{itemize}
+
+    \item shows an example of areas or antennae with a significant decay in QoS while another area/antenna can handle it.
+    \item discusses the tradeoff analysis between increase of utilization vs throughput.
+    \item Discuss that there is room for improvement, and the policies can be more aggressive (slide 15)
+\end{itemize}
+
+
+\section{Discussion \& Conclusion}
+
+\begin{itemize}
+    \item using a single pair of thresholds for all the regions is not a good approach and can be very conservative for some antennas and very disruptive for others
+    \item o	The need for more aggressive/data-driven policies
+    \item Not only using information about the site, take into account information from nearby switch off, a pesar de ser adaptativo el 24x7 al final se apagan mas por la noche. y quizas si se apaga durante el dia se reduce la emission del carbono
+    \item consider the times when the antennas are being switch off
+    \begin{itemize}
+        \item Directions: show the policies diagram \ref{fig:direction_to_work} Different dimensions to check
+    \end{itemize}
+\end{itemize}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.75\columnwidth]{images/policies_dimensions.png}
+    \caption{Different dimension for policies. \mf{We probably do not need this}}
+    \label{fig:direction_to_work}
+\end{figure}
+
+% \newpage
+
+%%
+%% The next two lines define the bibliography style to be used, and
+%% the bibliography file.
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{bib}
+
+
+%%
+%% If your work has an appendix, this is the place to put it.
+
+\end{document}
+\endinput
+%%
+%% End of file `sample-sigconf.tex'.

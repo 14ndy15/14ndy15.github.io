@@ -1,0 +1,163 @@
+\documentclass[10pt, conference, letterpaper]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts,bm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{ragged2e}
+\usepackage[table]{xcolor}
+\usepackage{url}
+
+\usepackage{booktabs}
+\usepackage[printonlyused]{acronym}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{soul}
+\usepackage{balance}
+\usepackage{comment}
+\usepackage{subcaption}
+
+\usepackage{enumitem}
+
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+    
+\usepackage{xspace}
+\newcommand{\eg}{\textit{e.g.},\xspace}
+\newcommand{\ie}{\textit{i.e.},\xspace}
+\newcommand{\etal}{~\textit{et al.},\xspace}
+
+
+\newcommand{\mf}[1]{\textcolor{red}{[Marco -- #1]}}
+\newcommand{\om}[1]{\textcolor{purple}{[Orlando -- #1]}}
+\newcommand{\js}[1]{\textcolor{blue}{[Jose -- #1]}}
+\newcommand{\ael}[1]{\textcolor{orange}{[Andra -- #1]}}
+\newcommand{\jo}[1]{\textcolor{teal}{[Jesus -- #1]}}
+
+
+\input{sections/acronyms}
+
+\begin{document}
+
+\title{An Evaluation of RAN Sustainability\\Strategies in Production Networks \vspace*{-8pt}}
+%\title{RAN Sustainability for Real: Benchmarking Threshold-Based Policies in Production}
+%\title{Benchmarking Threshold-Based Policies for Sustainable RAN Operations}
+%\title{Benchmarking Production-Level Threshold Policies for Sustainable RAN}
+%\title{Energy Savings in the RAN: A/B Testing Fixed Threshold-Based Strategies in Production}
+
+% \author{\IEEEauthorblockN{1\textsuperscript{st} Given Name Surname}
+% \IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+% \textit{name of organization (of Aff.)}\\
+% City, Country \\
+% email address or ORCID}
+% \and
+% \IEEEauthorblockN{2\textsuperscript{nd} Given Name Surname}
+% \IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+% \textit{name of organization (of Aff.)}\\
+% City, Country \\
+% email address or ORCID}
+% \and
+% \IEEEauthorblockN{3\textsuperscript{rd} Given Name Surname}
+% \IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+% \textit{name of organization (of Aff.)}\\
+% City, Country \\
+% email address or ORCID}
+% \and
+% \IEEEauthorblockN{4\textsuperscript{th} Given Name Surname}
+% \IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+% \textit{name of organization (of Aff.)}\\
+% City, Country \\
+% email address or ORCID}
+% \and
+% \IEEEauthorblockN{5\textsuperscript{th} Given Name Surname}
+% \IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+% \textit{name of organization (of Aff.)}\\
+% City, Country \\
+% email address or ORCID}
+% \and
+% \IEEEauthorblockN{6\textsuperscript{th} Given Name Surname}
+% \IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+% \textit{name of organization (of Aff.)}\\
+% City, Country \\
+% email address or ORCID}
+% }
+
+
+\author{\IEEEauthorblockN{Orlando E. Martínez-Durive\IEEEauthorrefmark{1}\IEEEauthorrefmark{2}, 
+Jos\'e Su\'arez-Varela \IEEEauthorrefmark{3},
+Jes\'us Omaña Iglesias \IEEEauthorrefmark{3}, 
+Andra Lutu \IEEEauthorrefmark{3} and Marco Fiore\IEEEauthorrefmark{1}}  
+\IEEEauthorblockA{\IEEEauthorrefmark{1}IMDEA Networks Institute, Spain, \IEEEauthorrefmark{2}Universidad Carlos III de Madrid, Spain,  \IEEEauthorrefmark{3}
+Telefónica Research, Spain\\
+\{orlando.martinez,   marco.fiore\}@imdea.org, \{jose.suarez-varela, jesusalberto.omana, andra.lutu\}@telefonica.com}
+\vspace{-25pt}
+}
+
+\maketitle
+
+\begin{abstract}
+
+Reducing energy consumption is a primary goal for the mobile telecommunication industry, with strong environmental and economic implications. The main target for savings is the Radio Access Network (RAN), which is responsible for more than 70\% of the total energy costs incurred by operators.
+Lowering energy costs at the RAN is possible by reducing the number of active carriers at off-peak locations and times where the demand can be served with a lower capacity than deployed.
+While the scientific community has been proposing a plethora of complex solutions to switch-off underutilized carriers, production networks largely rely nowadays on threshold-based strategies that run at individual RAN equipment and are typically enabled only overnight.
+Moreover, there are no real-world evaluations of the effectiveness of carrier switch-off approaches in reducing energy consumption or their impact on the end users.
+In this paper, we benchmark five %different 
+fixed threshold-based cell sleep policies deployed in a production network serving large geographical regions.
+The study provides unprecedented insights on industry-grade RAN sustainability at scale, in terms of actual energy savings and trade-offs with user experience. Our insights suggest that the capability of the tested policies in reducing the energy costs hits a clear barrier if no degradation is admissible for any user, and provides a strong empirical basis in support of more flexible approaches to save energy at the RAN.
+
+
+% \om{EDAS ABSTRACT OF 200 words}
+% Reducing energy consumption is a primary goal for the mobile telecommunication industry, with substantial environmental and economic implications. The main target for savings is the Radio Access Network (RAN), responsible for $>$70\% of the energy costs operators incur. Lowering energy costs is possible by reducing the number of active carriers when the demand can be served at a lower capacity than deployed. While the scientific community has been proposing a plethora of complex solutions to switch-off underutilized carriers, production networks rely nowadays on threshold-based strategies that run at individual RAN equipment and are typically enabled only overnight. Moreover, there are no real-world evaluations of the effectiveness of these approaches in reducing energy consumption or of their impact on the end-users. This paper presents a benchmark of five fixed threshold-based cell sleep policies deployed in a production network serving large geographical regions. The study provides unprecedented insights on industry-grade RAN sustainability in terms of actual energy savings and trade-offs with user experience. Our insights suggest that the capability of the tested policies in reducing energy costs hits a barrier if no degradation is admissible for any user and provides an empirical basis in support of more flexible approaches to save energy.
+
+%
+%However, special attention and planning are needed to avoid reducing the user quality of experience, such as a lack of service or a significant drop in metrics like throughput. This work focuses on the impact of four different energy-saving approaches deployed on a live network in Europe and how they impact the network's performance and the users' Quality of Service.
+\end{abstract}
+
+% \begin{IEEEkeywords}
+% component, formatting, style, styling, insert
+% \end{IEEEkeywords}
+
+\input{sections/01_introduction}
+
+\input{sections/03_policies}
+
+\input{sections/04_energy_savings}
+
+\input{sections/05_impact}
+
+\input{sections/06_discussion}
+
+\input{sections/02_rel_work}
+
+\vspace{-2pt}
+\section{Conclusions}
+\vspace{-4pt}
+
+We analyzed five fixed threshold-based cell sleep energy saving strategies deployed in a production network, examining various dimensions such as downtime, energy consumption, and impact on user performance. The unprecedented visibility into practical solutions for RAN sustainability lets us shed light on the performance and current limitations of these strategies, as well as provide recommendations for the design of new and more effective approaches that can still be deployed in real-world production-grade networks.
+%We studied two regions, one with a high density of cells and another sparse.
+%Our analysis shows that energy-saving policies only affect capacity booster cells, which, although the majority, are not the entirety since some cells are needed to guarantee coverage.
+% Specifically, we revealed that stricter policies yield greater energy savings without degrading end-user performance for a subset of the cells.
+% This finding suggests that more aggressive policies should be further evaluated and highlights that higher benefits are likely achievable by implementing energy savings at a finer granularity, potentially at the cell level rather than per region.
+%This work analyzed five fixed threshold-based cell sleep energy-saving strategies deployed in a production network, examining different dimensions such as downtime, energy consumption, and impact on user experience. We also discussed the current limitations of these strategies and distilled some recommendations for developing new approaches.
+
+
+\section*{Acknowledgment}
+This work was supported by NetSense Talent Attraction grants 2019-T1/TIC-16037 and 2023-5A/TIC-28944, funded with public funds from Comunidad de Madrid; 
+by the ORIGAMI project (Grant no. 101139270) and the INSTINCT project (Grant no. 101139161), funded by the Smart Networks and Services Joint Undertaking (SNS JU) under the European Union’s Horizon Europe research and innovation programme;
+% This work has been supported 
+by the Spanish Ministry of Economic Affairs and Digital Transformation and the European Union – NextGeneration EU, in the framework of the Recovery Plan, Transformation and Resilience (PRTR) through the UNICO I+D 5G SORUS project; 
+and by EU Horizon Framework grant no. 101060294 (XGain).
+
+\newpage
+\balance
+\bibliographystyle{ieeetr}
+\bibliography{bib}
+
+\end{document}

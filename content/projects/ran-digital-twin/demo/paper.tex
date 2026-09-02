@@ -1,0 +1,215 @@
+\documentclass[sigconf, 10pt, review]{acmart}
+
+\settopmatter{printacmref=false, printfolios=true}
+\setcopyright{none}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+\pagestyle{plain}
+
+\AtBeginDocument{%
+  \providecommand\BibTeX{{Bib\TeX}}}
+
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{colortbl}
+\usepackage[nolist,nohyperlinks]{acronym}
+
+\newcommand{\cmark}{\ding{51}}           
+\definecolor{ourrow}{RGB}{205,240,209}      % light green highlight for our row
+\newcommand{\circled}[1]{\textcircled{\footnotesize #1}}  % 
+
+\usepackage{xspace}
+\newcommand{\eg}{\textit{e.g.},\xspace}
+\newcommand{\ie}{\textit{i.e.},\xspace}
+
+\newcommand{\mf}[1]{\textcolor{red}{[Marco -- #1]}}
+\newcommand{\om}[1]{\textcolor{orange}{[Orlando -- #1]}}
+\newcommand{\sk}[1]{\textcolor{blue}{[Sam -- #1]}}
+
+
+\begin{document}
+
+
+\title[Demo: A Policy-Reactive Digital Twin for RAN Carrier Switch-Off]{Demo: A Policy-Reactive\\Digital Twin for RAN Carrier Switch-Off}
+
+%% Anonymous author block (acmart hides this under the anonymous option).
+% \author{Anonymous Author(s)}
+% \affiliation{%
+%   \institution{Submission \#XXX}
+%   \country{}}
+
+% \author{Samuel Knight}
+% \authornote{Both authors contributed equally to this research.}
+% \email{samuel@netai.tech}
+% \affiliation{%
+%   \institution{Net AI Tech Ltd}
+%   \city{Edinburgh}
+%   \country{United Kingdom}
+% }
+
+% \author{Orlando E. Martinez-Durive}
+% \authornotemark[1]
+% \email{orlando@netai.tech}
+% \affiliation{%
+%   \institution{Net AI tech Ltd}
+%   \city{Edinburgh}
+%   \country{United Kingdom}
+% }
+
+% \author{Ana Martínez-González}
+% \email{ana@netai.tech}
+% \affiliation{%
+%   \institution{Net AI Tech Ltd}
+%   \city{Edinburgh}
+%   \country{United Kingdom}
+% }
+
+% \author{Alec F. Diallo}
+% \email{alec@netai.tech}
+% \affiliation{%
+%   \institution{Net AI Tech Ltd}
+%   \city{Edinburgh}
+%   \country{United Kingdom}
+% }
+
+% \author{Alexis Duque}
+% \email{alexis@netai.tech}
+% \affiliation{%
+%   \institution{Net AI Tech Ltd}
+%   \city{Edinburgh}
+%   \country{United Kingdom}
+% }
+
+% \author{Paul Patras}
+% \email{paul@netai.tech}
+% \affiliation{%
+%   \institution{Net AI Tech Ltd}
+%   \city{Edinburgh}
+%   \country{United Kingdom}
+% }
+
+% \author{Marco Fiore}
+% \email{marco@netai.tech}
+% \affiliation{%
+%   \institution{Net AI Tech Ltd}
+%   \city{Edinburgh}
+%   \country{United Kingdom}
+% }
+
+\author[S. Knight et al.]{Samuel Knight, Orlando E. Mart\'inez-Durive, Ana Martínez-González,\\
+Alec F. Diallo, Alexis Duque, Paul Patras, Marco Fiore}
+\authornote{Samuel Knight and Orlando E. Martinez-Durive contributed equally to this work.}
+\affiliation{%
+  \institution{Net AI Tech Ltd}
+  \city{Edinburgh}
+  \country{United Kingdom}
+}
+\email{\{sam, orlando, ana, alec, alexis, paul, marco\}@netai.tech}
+
+\input{acronym}
+
+\maketitle
+
+
+%% =====================================================================
+\section{Background and Motivation}
+\label{sec:intro}
+Reducing energy consumption is a primary goal for the mobile industry, with strong environmental and economic implications. 
+Energy already accounts for a significant portion of a mobile operator's operational expenditure with the \ac{RAN} alone responsible for 
+% around 
+$73\%$ of the total energy an operator consumes~\cite{green2021going}. 
+\acfp{DT} are appealing in this setting because they let operators anticipate load, test new configurations, and estimate their impact before changing the production network. In this work
+we focus on the configuration decision that matters most for \ac{RAN} energy, \ie which carriers to switch on or off, and when.
+
+Safely testing policies requires an environment that is realistic, runs at the scale of a real deployment, and responds to policy actions. 
+Existing tools each cover part of this need.
+High-fidelity emulators and channel simulators reproduce a single cell or a handful of cells at the protocol or signal level, but not a city. 
+Operator-grade network twins reach city scale, but are built to mirror and forecast the network behavior rather than to take a switch-on/off policy as input and explore its consequences with respect to energy and \ac{QoS}. Our work sits in a gap left by existing tools, \ie a city-scale and \textit{policy-reactive} twin, that lets operators answer what a given policy would do before rollout.
+
+\section{Solution}
+\label{sec:arch}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=.9\columnwidth,trim={0 0 0 0},clip]{closed-loop.pdf}
+  \caption{The Digital Twin, its components, and its closed loop with an external
+  switch-on/off policy.
+  \label{fig:loop}}
+  \vspace{-10pt}
+\end{figure}
+
+Figure~\ref{fig:loop} illustrates how the twin operates. 
+It is initialized with a description of the target \ac{RAN} deployment (\circled{1}): the location of each site, the carriers deployed at each site, and context about the area each carrier serves, \eg population density and land use information. Once initialized, the twin runs a closed loop with an external switch-on/off policy. At each step, it exposes the mobile traffic demand at every carrier produced by the generative model (\circled{2}), which is used to inform policy decisions (\circled{3}).
+The twin then applies the decisions: it redistributes the load of each switched-off carrier across the carriers that stay on through the handover model, recomputes the network state, and reports the performance metrics (\circled{4}). 
+
+\noindent\textbf{Realistic Demand Generation.}
+The traffic generative model generates the traffic demand that drives the twin. For each carrier, we require realistic time series of served traffic, even when no ground truth measurements exist for it. These series are synthesized with a generative adversarial network (GAN) conditioned on the context of each carrier: the territory it serves, encoded from population density, land use, and road presence, together with antenna metadata such as frequency band and azimuth. Inspired by SpectraGAN~\cite{xu2021spectragan}, we generate each series in the frequency domain, rather than sample-by-sample, capturing the strong daily periodicity of mobile traffic. Critically, unlike SpectraGAN, we synthesize realistic traffic demands for each carrier individually and independently of the rest of the target RAN: this design is crucial in the context of the \ac{DT} operation, since it allows switching-off specific carriers without affecting the traffic generation process at all other carriers.
+
+% \begin{figure}[t]
+%   \centering
+%   \includegraphics[trim = 35 470 40 100, clip, width=\columnwidth]{GAN/architecture.pdf}
+%   \vspace{-24pt}
+%   \caption{Context-conditioned GAN: a spectrum and a residual branch generate the
+%   per-carrier series, which a matching discriminator scores against real traffic.}
+%   \label{fig:gan-arch}
+% \end{figure}
+
+\noindent\textbf{Handover Modeling.}
+When a capacity carrier is switched off, its users are handed over to nearby carriers, and where they land is far from uniform. Data-driven models that capture handover accurately tend to rely on per-user signal measurement reports collected from the live network. Instead, we estimate the transfer using a physics-based propagation model on public data, avoiding the need for an expensive measurement campaign.
+
+\noindent\textbf{Energy and \ac{QoS} Modeling.}
+We estimate energy with the measurement-based base station
+power model of~\cite{energy_consumption_formula}, calibrated on city-scale 4G and 5G
+data. 
+The energy of a base station splits into two parts,
+\begin{equation}
+  E_{BS} = E_{BBU} + \sum_{i} E^{i}_{RRU},
+  \label{eq:e_bs}
+\end{equation}
+where $E_{BBU}$ is the energy spent processing baseband signals, which stays roughly constant and independent of load, and $E^{i}_{RRU}$ is the energy of the radio unit serving carrier $i$,
+\begin{equation}
+  E_{RRU} = \alpha \cdot R_{PRB} \cdot P_{m} + \gamma,
+  \label{eq:e_rru}
+\end{equation}
+with $R_{PRB}$ the fraction of resource blocks in use (the load), $P_{m}$ the maximum transmit power set by the operator, and $\alpha$ and $\gamma$ the power-amplifier efficiency and fixed circuit power. 
+
+There is no consensus on how to quantify \ac{QoS} from network-side data: the right definition is operator-dependent and tied to the services (\ie video, voice, browsing) and thresholds each operator optimizes for. Rather than mirror one operator's approach, the twin offers a flexible \ac{QoS} metric grounded on the observation that per-user throughput degrades non-linearly with load, collapsing as a carrier passes a critical saturation point~\cite{bonald2003wireless}, and that this relationship is well captured by a sigmoid with an inflection at that critical point~\cite{lee2014qoe}. 
+
+%In detail
+Concretely, we map a carrier's load $x$, \ie its \ac{PRB} utilization in percentages, to a score on a $1$ to $5$ scale (the higher the better) through an inverted logistic model,
+\begin{equation}
+  q(x) = L + \frac{U - L}{1 + e^{\,k\,(x - x_{0})}},
+  \label{eq:qos}
+\end{equation} 
+with floor $L=1$, ceiling $U=5$, critical load $x_{0}$ (default $75\%$), and decay rate $k$ (default $0.22$): \ac{QoS} stays near $U$ at low load and decays toward $L$ once load passes $x_{0}$. 
+
+
+\section{Demonstration}
+\label{sec:demo}
+We instantiate the twin on a scenario of a major operator's deployment in the Brussels-Capital region: $3{,}054$ carriers across $288$ sites and $862$ sectors over roughly $140$~km$^2$. 
+The lower bands ($800$ and $1800$~MHz) provide coverage, while the higher bands ($2100$ and $2600$~MHz) are the $1{,}153$ capacity carriers eligible for switch-off.
+
+To implement the switch-on/off policy and visualize the metrics returned by the digital twin, we have created an accompanying web app. The app allows users to specify a bulk policy, switching off a specified percentage of the deployment's capacity antennas, and explore the resulting impact on the network. The app communicates with the digital twin over the same REST/OpenAPI interfaces that can be used for training a more sophisticated policy model in the closed loop described in Figure~\ref{fig:loop}.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[trim=9cm 0 9cm 0, clip, width=0.96\columnwidth]{figures/demo/dt_fifty_switchoff.pdf}
+  \vspace{-10pt}
+  \caption{The web app demo UI interacting in real-time with the Digital Twin.}
+  \label{fig:demo}
+  \vspace{-14pt}
+\end{figure}
+
+Figure~\ref{fig:demo} shows the web app user interface for interacting with the digital twin, configured with the Brussels deployment. In the top-left, an interactive map displays the locations of each site. The top-middle of the window describes summary information about the deployment and contains the interactive power-off buttons which allow a basic policy to be selected. The top-right lists all carriers related to the selected site. Capacity carriers have a corresponding switch-on/off toggle allowing per-carrier explorations to be conducted. The bottom left lists aggregated network-level metrics while the bottom right lists carrier-level metrics for the selected carrier.
+
+In the scenario presented, a $50\%$ capacity carrier switch-off policy has been applied. The network-level metrics show the resultant energy savings and degraded \ac{QoS} of such an aggressive policy. Antenna-level metrics for a specific coverage carrier display the increased load and decreased \ac{QoS} caused by user handover from a capacity carrier at the same site being switched off by the policy. The twin is able to provide these city-scale insights without expensive measurement collection campaigns or custom hardware. All components of the demonstration can be run on basic commodity hardware (no GPU acceleration required).
+\vspace*{-0.7em}
+
+\bibliographystyle{IEEEtran}
+\bibliography{bib}
+
+\end{document}
+

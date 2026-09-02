@@ -1,0 +1,57 @@
+\begin{table*}[!t]
+\caption{Description of the regions under study}
+\label{tab:regions}
+\centering
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Region name} & \textbf{Area type} & \textbf{Area $km^2$} & \textbf{Density (antennas/sq. km.)} & \textbf{LTE antennas / site} & \textbf{Capacity / Coverage (\%)}\\
+
+\midrule
+Region A & Rural & 4 986.82 & 0.21 & $8.5 \pm 6.28$ & 44.41\% / 55.59\% \\
+Region B & Suburban & 189.28 & 5.33 & $10.8 \pm 5.99$ & 47.84\% / 52.16\% \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{Dataset \& Methodology}
+Our study focuses on the cellular network deployment of a top-tier MNO in the UK, with over 50M devices connected. During the period of February 22 to March 22, in 2023, this MNO tested four different energy saving policies using a commercial solution from a RAN equipment vendor (see Table~\ref{tab:mno-trials}). We collected fine-grained KPIs at the antenna level and leveraged this data to make a posterior evaluation of the different policies.
+
+\subsection{RAN energy saving solution}\label{subsec:background-energy-saving}
+
+Figure~\ref{fig:energy_saving_behaviour} illustrates the behavior of the commercial energy saving solution deployed by the MNO. It relies on continuous monitoring of the Physical Resource Block (PRB) utilization on cells, and applies a dynamic switch off policy at the level of \textit{power groups}. These groups include antennas covering the same area over different frequency bands, and has an associated order in which the antennas should be switched off according to the policy. The main configurable parameters are:
+
+\textbf{Active Time Interval:} It sets the time period in which the energy saving policy is active in the network. In our case, Policy 1 is only active over the nighttime (23:00-6:00), while the other Policies 2-4 operate all day (see Table~\ref{tab:mno-trials}).
+
+\textbf{On/Off thresholds:} These values define the levels of PRB utilization that trigger the switch on/off of antennas within a power group. In the MNO trials, each tested policy sets different On/Off thresholds (see Table\ref{tab:mno-trials}) with the goal of evaluating different levels of intensity for energy saving \js{use always intensity instead of aggressiveness?}. When the PRB utilization goes below the Off threshold, the solution estimates the resulting utilization on the remaining active antennas in the power group. This estimate considers that all users attached to the target antenna will move to other antennas of the same power group. If this estimate is below the On threshold, then it starts the switch off process.
+
+\textbf{Time To Trigger:} This parameter sets the hold time from the moment that the On/Off thresholds are exceeded to the moment that the switch On/Off process are actually triggered. This mechanism is intended to prevent erratic ping-pong behaviors due to small load fluctuations around the thresholds. In our case, it is set to 5 minutes in all policies.
+
+To make the switch off process smoother, once a switch off is triggered the antenna power is ramped down before the complete shutdown. This makes that the coverage of the antenna reduces gracefully, so that UEs at the edge start to experience a drop in signal strength and they progressively start to handover to other cells in the same power group. Likewise, the solution applies a contention mechanism that prevents switching off antennas in case there are ongoing emergency calls or queued messages for Earthquake and Tsunami Warning System (ETWS) or Commercial Mobile Alert System (CMAS), thus keeping the network at full capacity under emergency events.
+    
+\begin{figure}[!t]
+    \centering
+    \includegraphics[width=1\columnwidth]{images/policies_evaluation/policy_behaviour.pdf}
+    \caption{Example of the behavior of the energy saving solution on real-world data. \js{include the configurable parameters: Active Time Interval, on/off thresholds, Time To Trigger; Y label "PRB utilization (\%)"; X label: don't say "hours". It seems the sample period is too long.}.
+    \mf{I think that we need this figure (in a better version, using real KPIs over a longer timescale) \emph{right next to Table~\ref{tab:mno-trials}}, so that it is clear what the values in that table refer to}}
+    \label{fig:energy_saving_behaviour}
+\end{figure}
+
+
+\subsection{Energy saving trials}\label{subsec:energy-saving-trials}
+
+According to standard deployment strategies, the MNO differentiates its licensed frequency bands into two classes, respectively devoted to optimize \textit{coverage} (low frequency bands) and \textit{capacity} (mid-high frequency bands). From these, capacity antennas are the only ones that implement energy saving policies, while coverage cells typically remain untouched due to their sensitivity to create potential coverage holes in the deployment. Each power group comprises a set of capacity cells along with --~at least~-- one coverage cell. %, which should %$(i)$ provide service to the UEs of the capacity cell, should this one shut down, and $(ii)$ assist the capacity antennas to start the wake up process. Thus, 
+Thus, coverage cells not only guarantee service to all users in the area, but also assist inactive capacity cells within the same power group to start the wake up process.  
+
+
+The studied MNO performed trials of the four policies for one week each (see Table~\ref{tab:mno-trials}), and over two regions identified by specific Tracking Areas. Table~\ref{tab:regions} depicts some details about the two trial regions, which include heterogeneous geographic properties (urban / suburban) and cell deployment densities (cells per sq. km.). Energy saving policies were only tested on LTE antennas, which account for <XX\% \js{Orlando, check this number} of all the antennas deployed in the two regions. Capacity antennas --~which are the ones affected by energy saving policies~-- account for 44\% and 47\% of the tested antennas under Region A and Region B, respectively. Note that the definition of power groups (i.e., coverage and capacity cells under the same coverage area) is a delicate process that may have significant impact on the energy saving results. Nevertheless, the aforementioned trials consider predefined power groups and focus on evaluating the impact of different energy saving configurations across regions.
+
+
+\subsection{Data feeds}
+We collect antenna-level measurements from the three regions of study (Table~\ref{tab:regions}) over the entire period of the trials (Feb 22-Mar 22, 2023). Also, as a reference for our evaluation we collect measurements on the same regions two weeks before the trials (Feb 8-Feb 15, 2023). For this, we rely on two main data feeds that the MNO injects into its BigData measurement platform: 
+
+\textbf{Radio Access Network deployment}:
+We collect an inventory of all the antennas deployed in the three regions of study (Table~\ref{tab:regions}). This includes antenna-level information such as the location (lat/lon coordinates), the eNodeB ID, the orientation (azimuth), tilt, antenna manufacturer and model, and the carrier (i.e, frequency channels). This inventory is upgraded on a daily basis reflecting changes in the network topology (e.g., deployment of new cells and decommissioning of older technologies).
+
+\textbf{Radio Access Network KPIs}:
+The MNO's measurement infrastructure collects more than 160 KPIs at the antenna level for all the radio access technologies deployed, including from GSM (2G) to the newest 5G NR cells. Measurements are collected in 15-minute intervals and averaged at the antenna level over hourly intervals -- i.e., every 4 measurements -- that are eventually stored and collected in a BigData cluster. In our study, we consider three main KPIs that allow us to evaluate the different energy-saving policies tested: $(i)$ 
+antenna availability -- the number of seconds per hour that the antenna was active, $(ii)$ the antenna load -- measured as the number of Physical Resource Blocks (PRB) used for the Downlink --, $(iii)$ and the average user throughput served by the antenna.
