@@ -1,0 +1,22 @@
+{{ define "main" }}
+<div class="content-header">
+  <h1>{{ .Title }}</h1>
+</div>
+
+<article class="content-section">
+  {{ if .Pages }}
+    {{ range .Pages }}
+    <div style="margin-bottom: calc(var(--line-height) * 2); padding-bottom: var(--line-height); border-bottom: 1px solid var(--text-color-alt);">
+      <h3 style="margin: 0 0 0.5rem 0;">
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
+      </h3>
+      <div style="font-size: 0.9rem; color: var(--text-color-alt); margin-bottom: 0.5rem;">
+        {{ .Params.event }} — {{ .Params.location }} ({{ .Date.Format "Jan 2006" }})
+      </div>
+    </div>
+    {{ end }}
+  {{ else }}
+    <p>No talks yet.</p>
+  {{ end }}
+</article>
+{{ end }}

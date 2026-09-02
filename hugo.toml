@@ -1,0 +1,52 @@
+baseURL = '/'
+languageCode = 'en-us'
+title = 'Orlando E. Martínez-Durive'
+theme = 'monospace'
+
+[params]
+name = 'Orlando E. Martínez-Durive'
+title = 'Networks Researcher'
+
+[[params.social]]
+name = 'linkedin'
+label = 'in'
+url = 'https://www.linkedin.com/in/orlando-martinez-durive'
+
+[[params.social]]
+name = 'x'
+label = 'x'
+url = 'https://twitter.com/14ndy15'
+
+[[params.social]]
+name = 'email'
+label = '@'
+url = 'mailto:orlando.martinez@networks.imdea.org'
+
+[[params.social]]
+name = 'scholar'
+label = 'scholar'
+url = 'https://scholar.google.com/citations?user=VK4VVFwAAAAJ&hl=en'
+
+[[menu.main]]
+name = 'Research'
+url = '/research/'
+weight = 1
+
+[[menu.main]]
+name = 'Talks'
+url = '/talks/'
+weight = 2
+
+[[menu.main]]
+name = 'CV'
+url = '/cv/'
+weight = 3
+
+[outputs]
+home = ['HTML', 'llmstxt']
+
+[outputFormats]
+[outputFormats.llmstxt]
+mediaType = 'text/plain'
+baseName = 'llms'
+isPlainText = true

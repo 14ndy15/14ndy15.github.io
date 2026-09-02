@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="content-header">
+  <h1>{{ .Title }}</h1>
+  {{ if .Params.date }}
+  <div style="font-size: 0.9rem; color: var(--text-color-alt); margin-top: var(--line-height);">
+    {{ .Params.event }} — {{ .Params.location }}<br>
+    {{ .Date.Format "January 2006" }}
+  </div>
+  {{ end }}
+</div>
+
+<article class="content-section">
+  <div class="bio">
+    {{ .Content }}
+  </div>
+</article>
+
+<div style="margin-top: calc(var(--line-height) * 2); text-align: center;">
+  <a href="/talks/">← Back to all talks</a>
+</div>
+{{ end }}

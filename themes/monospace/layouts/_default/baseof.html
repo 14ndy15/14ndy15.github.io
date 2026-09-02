@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="description" content="{{ .Param "description" }}" />
+  <title>{{ .Title }} | {{ .Site.Title }}</title>
+  <link rel="stylesheet" href="{{ .Site.BaseURL }}css/style.css" />
+</head>
+<body>
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar-left">
+    <div class="profile">
+      <img class="profile-pic" src="{{ .Site.BaseURL }}img/profile.png" alt="{{ .Site.Params.name }}" />
+      <div>
+        <div class="profile-name">{{ .Site.Params.name }}</div>
+        <div class="profile-title">{{ .Site.Params.title }}</div>
+      </div>
+    </div>
+
+    {{ if .Site.Params.social }}
+    <div class="social-links">
+      {{ range .Site.Params.social }}
+        {{ if eq .name "email" }}
+          <a href="#" onclick="alert('14ndy15@gmail.com'); return false;" title="{{ .name }}">{{ .label }}</a>
+        {{ else }}
+          <a href="{{ .url }}" title="{{ .name }}">{{ .label }}</a>
+        {{ end }}
+      {{ end }}
+    </div>
+    {{ end }}
+
+    <nav class="nav-tree">
+      <ul class="tree">
+        <li{{ if eq .Permalink .Site.BaseURL }} class="active"{{ end }}>
+          <a href="{{ .Site.BaseURL }}" class="nav-home">~</a>
+          <ul>
+            <!-- Research -->
+            <li{{ if in .Section "research" }} style="font-weight: bold;"{{ end }}>
+              <a href="/research/">Research</a>
+              <ul>
+                <li><a href="/research/bgp-max-prefix/" title="BGP Maximum-Prefix Limits Impact Analysis">BGP Max Prefix Analysis</a></li>
+                <li><a href="/research/ran-sustainability/" title="An Evaluation of RAN Sustainability Strategies in Production Networks">RAN Sustainability Eval</a></li>
+                <li><a href="/research/mobile-demand-footprint/" title="Characterizing, Modeling and Exploiting the Mobile Demand Footprint of Large Public Protests">Mobile Demand @ Protests</a></li>
+              </ul>
+            </li>
+            <!-- Talks -->
+            <li{{ if in .Section "talks" }} style="font-weight: bold;"{{ end }}>
+              <a href="/talks/">Talks</a>
+              <ul>
+                <li><a href="/talks/see-14/" title="BGP Maximum-Prefix Limits at SEE 14">SEE 14: BGP Max Prefix</a></li>
+                <li><a href="/talks/ripe-91/" title="RIPE 91">RIPE 91</a></li>
+                <li><a href="/talks/phd-defense/" title="PhD Defense: Understanding Societal Phenomena and Network Operations with Mobile Metadata">PhD Defense</a></li>
+                <li><a href="/talks/genai-networks/" title="Networking and GenAI Workshop">GenAI + Networking</a></li>
+              </ul>
+            </li>
+            <!-- CV -->
+            <li>
+              <a href="/cv/">CV</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- DIVIDER -->
+  <div class="divider">░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</div>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    {{ block "main" . }}{{ end }}
+  </main>
+</body>
+</html>

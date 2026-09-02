@@ -1,0 +1,27 @@
+{{ define "main" }}
+<div class="content-header">
+  <h1>{{ .Title }}</h1>
+  {{ if .Params.conference }}
+  <div style="font-size: 0.9rem; color: var(--text-color-alt); margin-top: var(--line-height);">
+    {{ .Params.conference }}<br>
+    {{ if .Params.authors }}<em>{{ .Params.authors }}</em>{{ end }}
+  </div>
+  {{ end }}
+</div>
+
+<article class="content-section">
+  <div class="bio">
+    {{ .Content }}
+  </div>
+</article>
+
+{{ if .Params.link }}
+<div style="margin-top: calc(var(--line-height) * 2);">
+  <a href="{{ .Params.link }}" target="_blank">View publication →</a>
+</div>
+{{ end }}
+
+<div style="margin-top: calc(var(--line-height) * 2); text-align: center;">
+  <a href="/research/">← Back to research</a>
+</div>
+{{ end }}
