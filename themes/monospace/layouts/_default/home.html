@@ -1,7 +1,24 @@
 {{ define "main" }}
-  {{ .Content }}
-  {{ range site.RegularPages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    {{ .Summary }}
-  {{ end }}
+<div class="content-header">
+  <h1>Home</h1>
+</div>
+
+{{ $content := .Content }}
+{{ $parts := split $content "<h2 id=\"news\">News</h2>" }}
+
+<article class="content-section">
+  <h2>About</h2>
+  <div class="bio">
+    {{ index $parts 0 | safeHTML }}
+  </div>
+</article>
+
+{{ if gt (len $parts) 1 }}
+<article class="content-section">
+  <h2>News</h2>
+  <div class="bio">
+    {{ index $parts 1 | safeHTML }}
+  </div>
+</article>
+{{ end }}
 {{ end }}
