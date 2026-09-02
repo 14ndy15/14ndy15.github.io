@@ -8,6 +8,15 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('[nav.js] navTree not found');
     return;
   }
+
+  // Only enable collapse on mobile
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  console.log('[nav.js] isMobile:', isMobile);
+  if (!isMobile) {
+    console.log('[nav.js] Desktop mode - collapse disabled');
+    return;
+  }
+
   console.log('[nav.js] navTree found, setting up event listeners');
 
   // Close details when a navigation link is clicked (except the root ~)

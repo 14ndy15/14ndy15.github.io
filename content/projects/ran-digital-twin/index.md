@@ -73,12 +73,6 @@ We implemented four increasingly complex test scenarios using real Orange MNO de
 
 **Deployment:**
 - **Public Instance:** https://digitaltwin.netai.tech/ (credentials available upon request)
-- **Repository:** https://gitlab.com/net-ai/aria-deliverable (complete code, Docker setup, documentation)
-
-**Key Features in Repository:**
-- `deployment_hosting/` — Docker Compose files for local and hosted deployment
-- `interaction_script/` — Example Python client showing integration with threshold-based energy policies
-- `api/` — Complete OpenAPI specification with Swagger documentation
 
 ## Key Findings
 
@@ -90,9 +84,3 @@ The digital twin successfully:
 - Simulates city-scale networks (3,000+ antennas) in 15-minute increments
 - Provides feedback loops for rApp validation before O-RAN deployment
 
-## Team & Collaborations
-
-**Net AI** team developed this as part of the Ericsson EIAP initiative, in collaboration with:
-- Multiple Mobile Network Operators (Orange, Proximus, Bouygues, Free Mobile, Telenet)
-- Ericsson (EIAP platform and rApp validation requirements)
-- European research partners and students
