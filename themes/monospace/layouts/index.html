@@ -3,10 +3,22 @@
   <h1>Home</h1>
 </div>
 
+{{ $content := .Content }}
+{{ $parts := split $content "## News" }}
+
 <article class="content-section">
   <h2>About</h2>
   <div class="bio">
-    {{ .Content }}
+    {{ index $parts 0 | safeHTML }}
   </div>
 </article>
+
+{{ if gt (len $parts) 1 }}
+<article class="content-section">
+  <h2>News</h2>
+  <div class="bio">
+    {{ index $parts 1 | safeHTML }}
+  </div>
+</article>
+{{ end }}
 {{ end }}
