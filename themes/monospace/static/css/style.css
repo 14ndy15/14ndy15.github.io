@@ -319,6 +319,28 @@ hr {
   padding: 0;
 }
 
+/* COLLAPSIBLE NAVIGATION */
+.nav-tree {
+  display: block;
+}
+
+.nav-tree summary {
+  cursor: pointer;
+  font-weight: var(--font-weight-bold);
+  font-size: 0.95rem;
+  padding: 0.5ch 0;
+  margin-bottom: var(--line-height);
+  user-select: none;
+}
+
+.nav-tree summary:hover {
+  color: var(--accent-color);
+}
+
+.nav-tree summary::marker {
+  color: var(--text-color);
+}
+
 /* RESPONSIVE */
 @media (max-width: 1200px) {
   body {
@@ -346,34 +368,29 @@ hr {
 @media (max-width: 768px) {
   body {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto 1fr;
-    padding: 1.5ch;
+    grid-template-rows: auto auto auto 1fr;
+    padding: 0;
+    gap: 0;
   }
 
   .sidebar-left {
     grid-column: 1;
-    grid-row: 1;
-    padding-right: 1ch;
-    padding-bottom: calc(var(--line-height) * 2);
+    grid-row: 1 / 4;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 1.5ch;
     border-bottom: 3px double var(--text-color);
-    margin-bottom: calc(var(--line-height) * 2);
   }
 
-  .divider {
-    display: none;
-  }
-
-  .main-content {
-    grid-column: 1;
-    grid-row: 3;
-    padding: 0;
-  }
-
+  /* Profile & Socials Row */
   .profile {
     flex-direction: row;
     align-items: center;
     text-align: left;
     gap: 1ch;
+    margin-bottom: var(--line-height);
+    width: 100%;
   }
 
   .profile-pic {
@@ -387,8 +404,157 @@ hr {
     text-align: left;
   }
 
-  .social-row {
+  .social-links {
+    width: 100%;
     justify-content: flex-start;
+    margin-bottom: calc(var(--line-height) * 1.5);
+  }
+
+  /* Hamburger Menu */
+  .hamburger-btn {
+    display: block;
+    align-self: flex-start;
+    margin-bottom: var(--line-height);
+    padding: 0;
+    width: auto;
+  }
+
+  /* Navigation Tree - Directory Style */
+  .nav-tree {
+    width: 100%;
+  }
+
+  .nav-tree.mobile-hidden {
+    display: none;
+  }
+
+  .tree > li {
+    margin-bottom: 0;
+    border: none;
+    padding-left: 0;
+    margin-left: 0;
+  }
+
+  .tree > li:before {
+    display: none;
+  }
+
+  /* Level 1: ~ (tilde/home) */
+  .tree > li > a {
+    display: inline-block;
+    margin-right: 2ch;
+    font-size: 1.2em;
+    margin-bottom: var(--line-height);
+  }
+
+  /* Level 2: Projects, Talks, etc. */
+  .tree > li > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-left: var(--border-thickness) solid var(--text-color);
+    margin-left: 1.5ch;
+  }
+
+  .tree > li > ul > li {
+    border: none !important;
+    padding-left: 2.5ch !important;
+    margin-left: 0;
+    margin-bottom: 0;
+    position: relative;
+    border-left: var(--border-thickness) solid var(--text-color);
+  }
+
+  .tree > li > ul > li:first-child {
+    border-left: var(--border-thickness) solid var(--text-color);
+  }
+
+  .tree > li > ul > li:before {
+    position: absolute;
+    display: block;
+    top: calc(var(--line-height) / 2);
+    left: 0;
+    content: "";
+    width: 1ch;
+    border-bottom: var(--border-thickness) solid var(--text-color);
+  }
+
+  .tree > li > ul > li:last-child:after {
+    display: none;
+  }
+
+  /* Level 2: All items - Full width block display */
+  .tree > li > ul > li {
+    display: block;
+  }
+
+  .tree > li > ul > li > a {
+    display: inline-block;
+    padding-bottom: 0.5ch;
+    margin-bottom: 0.5ch;
+  }
+
+  /* Level 3: Sub-items - Vertical with tree lines */
+  .tree > li > ul > li > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+    border: none;
+  }
+
+  .tree > li > ul > li > ul > li {
+    position: relative;
+    padding-left: 2.5ch;
+    margin-left: 1.5ch;
+    margin-bottom: 0;
+    border-left: var(--border-thickness) solid var(--text-color);
+  }
+
+  .tree > li > ul > li > ul > li:before {
+    position: absolute;
+    display: block;
+    top: calc(var(--line-height) / 2);
+    left: 0;
+    content: "";
+    width: 1ch;
+    border-bottom: var(--border-thickness) solid var(--text-color);
+  }
+
+  .tree > li > ul > li > ul > li:last-child {
+    border-left: none;
+  }
+
+  .tree > li > ul > li > ul > li:last-child:after {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    content: "";
+    height: calc(var(--line-height) / 2);
+    border-left: var(--border-thickness) solid var(--text-color);
+  }
+
+  .tree > li > ul > li > ul > li a {
+    display: block;
+    font-size: 0.9rem;
+    padding: 0.3ch 0;
+    border: none;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .main-content {
+    grid-column: 1;
+    grid-row: 4;
+    padding: 1.5ch;
   }
 }
 

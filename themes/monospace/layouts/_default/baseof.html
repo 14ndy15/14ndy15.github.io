@@ -30,7 +30,8 @@
     </div>
     {{ end }}
 
-    <nav class="nav-tree">
+    <details class="nav-tree" open>
+      <summary>Navigation</summary>
       <ul class="tree">
         <li>
           <a{{ if eq .Permalink .Site.BaseURL }} class="active nav-home"{{ else }} class="nav-home"{{ end }} href="{{ .Site.BaseURL }}">~</a>
@@ -73,13 +74,13 @@
               <a href="/pics/">Pics</a>
             </li>
             <!-- CV -->
-            <li>
+            <li{{ if in .Section "cv" }} style="font-weight: bold;"{{ end }}>
               <a href="/cv/">CV</a>
             </li>
           </ul>
         </li>
       </ul>
-    </nav>
+    </details>
   </aside>
 
   <!-- DIVIDER -->
@@ -89,6 +90,16 @@
   <main class="main-content">
     {{ block "main" . }}{{ end }}
   </main>
+
+  <script>
+    // Close details when a navigation link is clicked (except the root ~)
+    document.querySelectorAll('.nav-tree a:not(.nav-home)').forEach(link => {
+      link.addEventListener('click', function() {
+        const details = document.querySelector('.nav-tree');
+        if (details) details.open = false;
+      });
+    });
+  </script>
 </body>
 </html>
 <!-- Cache bust: v2 clean rebuild -->
