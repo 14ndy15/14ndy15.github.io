@@ -3,16 +3,22 @@ title: Home
 description: Orlando E. Martínez-Durive — Senior ML Researcher at NetAI
 ---
 
-I am a Senior ML Researcher at NetAI and a Postdoctoral Fellow in the Networks Data Science Group at IMDEA Networks Institute.
+I am a Senior ML Researcher at NetAI. Before that, I was a Postdoctoral Fellow in the Networks Data Science Group at IMDEA Networks Institute and an intern at Cisco Thousand Eyes. During my PhD, I was a visiting research student at Telefónica Innovación Digital and the Network Science Institute at Northeastern University.
 
 During my PhD (Cum Laude) in Telematics Engineering at Carlos III University of Madrid, I studied how we can understand Societal Phenomena and optimize network operations through the lens of Mobile Network Metadata. My research lines focus on network measurements, remote sensing, and ML/AI solutions, with specific interest in ML solutions for energy-saving policies for mobile networks, using mobile networks as sensors for social events, and understanding how people use space in cities.
 
-Some of my work has appeared in IEEE INFOCOM (x3), IEEE SECON (x2), ACM IMC, and IEEE/IFIP TMA. For updated publications, check my Google Scholar profile.
+Some of my work has appeared in IEEE INFOCOM (x3), ACM IMC (x3), IEEE SECON (x2), and IEEE/IFIP TMA. For updated publications, [check my Google Scholar profile](https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID).
 
 ## News
 
-- **Joined NetAI as Senior ML Researcher** — Excited to be working on machine learning solutions for mobile network intelligence. Combining research with industry applications to solve real-world networking challenges.
+- **Promoted to Senior ML Researcher at NetAI** — Since 2026, working on machine learning solutions for mobile network intelligence. Combining research with industry applications to solve real-world networking challenges.
+
+- **Papers Accepted at ACM IMC** — Two papers accepted: "Political Orientation and Mobile App Consumption" exploring how political beliefs relate to digital platform usage, and "The Circuit Breaker That Cried Wolf" analyzing BGP maximum-prefix limits in production networks. See [Political Orientation](/projects/political-orientation/) and [BGP Max Prefix](/projects/bgp-max-prefix/) for details.
 
 - **SEE 14 Meeting in Belgrade** — Presented work on BGP Maximum-Prefix Limits and their impact on network stability. [Read more&nbsp;→](/talks/see-14/)
 
-- **Paper Accepted at INFOCOM 2025** — Our evaluation of RAN sustainability strategies in production networks is now available. [Check it out&nbsp;→](/research/ran-sustainability/)
+- **GenAI + Networking Workshop in Paris** — Explored the role of generative AI and agentic approaches in network automation and operations. [Read more&nbsp;→](/talks/genai-networks/)
+
+- **RIPE 91 Meeting in Bucharest** — Presented analysis of BGP maximum-prefix limits and real-world implications for network operators. [Read more&nbsp;→](/talks/ripe-91/)
+
+- **Paper Accepted at INFOCOM 2025** — Our evaluation of RAN sustainability strategies in production networks is now available. [Check it out&nbsp;→](/projects/ran-energy-saving/)

@@ -61,10 +61,7 @@ Graduated Cum Laude with International Doctorate distinction.
 
 ## Supervised Students
 
-- **Daniel Amaro** (M.Sc., University of Havana) — Trajectory Reconstruction from Mobile Traffic Metadata
-- **Prashant Ray** (M.Sc., Politecnico di Torino) — Land Use Detection through Matrix Decomposition
-- **Theo Couturieux** (Undergraduate, l'ENSEEIHT) — Probabilistic Spatial Coverage Inference
-- **Roger Casimiro** (Undergraduate, Technological University José Antonio Echeverría) — Human Mobility Analysis
+{{< students >}}
 
 ## Selected Publications
 
