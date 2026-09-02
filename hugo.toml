@@ -28,8 +28,8 @@ label = 'scholar'
 url = 'https://scholar.google.com/citations?user=VK4VVFwAAAAJ&hl=en'
 
 [[menu.main]]
-name = 'Research'
-url = '/research/'
+name = 'Projects'
+url = '/projects/'
 weight = 1
 
 [[menu.main]]
@@ -38,6 +38,26 @@ url = '/talks/'
 weight = 2
 
 [[menu.main]]
+name = 'Teaching'
+url = '/teaching/'
+weight = 3
+
+[[menu.main]]
+name = 'Community'
+url = '/community/'
+weight = 4
+
+[[menu.secondary]]
+name = 'Media'
+url = '/media/'
+weight = 1
+
+[[menu.secondary]]
+name = 'Pics'
+url = '/pics/'
+weight = 2
+
+[[menu.secondary]]
 name = 'CV'
 url = '/cv/'
 weight = 3
