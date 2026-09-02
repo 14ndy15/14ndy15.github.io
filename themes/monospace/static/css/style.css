@@ -344,15 +344,15 @@ hr {
 /* Smooth transition for details content */
 .nav-tree > ul {
   overflow: hidden;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
-  max-height: 1000px;
+  transition: max-height 0.6s ease-in-out, opacity 0.6s ease-in-out;
+  max-height: 2000px;
   opacity: 1;
 }
 
 .nav-tree:not([open]) > ul {
   max-height: 0;
   opacity: 0;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
+  transition: max-height 0.6s ease-in-out, opacity 0.6s ease-in-out;
 }
 
 /* RESPONSIVE */
