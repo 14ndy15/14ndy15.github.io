@@ -261,6 +261,13 @@ a:hover {
   padding-left: 1ch;
 }
 
+.content-section h3 {
+  font-weight: var(--font-weight-medium);
+  font-size: 0.95rem;
+  margin-bottom: calc(var(--line-height) * 0.8);
+  margin-top: calc(var(--line-height) * 1.2);
+}
+
 .bio {
   line-height: var(--line-height);
   word-break: break-word;
@@ -272,9 +279,32 @@ a:hover {
   margin-bottom: var(--line-height);
 }
 
-.content-section ul {
+.content-section img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: calc(var(--line-height) * 2) 0;
+  box-sizing: border-box;
+}
+
+.teaser-image {
+  width: 80%;
+  margin: calc(var(--line-height) * 2) 0;
+}
+
+.content-image {
+  width: 80%;
+  border: 1px solid var(--text-color-alt);
+  padding: 1ch;
+  margin: calc(var(--line-height) * 2) 0;
+}
+
+.content-section ul,
+.content-section ol {
   padding-left: 3ch;
   margin-left: 0;
+  margin-top: calc(var(--line-height) * 0.6);
+  margin-bottom: calc(var(--line-height) * 1.2);
 }
 
 .content-section li {

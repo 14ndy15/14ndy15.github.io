@@ -32,27 +32,45 @@
 
     <nav class="nav-tree">
       <ul class="tree">
-        <li{{ if eq .Permalink .Site.BaseURL }} class="active"{{ end }}>
-          <a href="{{ .Site.BaseURL }}" class="nav-home">~</a>
+        <li>
+          <a{{ if eq .Permalink .Site.BaseURL }} class="active nav-home"{{ else }} class="nav-home"{{ end }} href="{{ .Site.BaseURL }}">~</a>
           <ul>
-            <!-- Research -->
-            <li{{ if in .Section "research" }} style="font-weight: bold;"{{ end }}>
-              <a href="/research/">Research</a>
+            <!-- Projects -->
+            <li>
+              <a{{ if or (eq .Section "projects") (hasPrefix .RelPermalink "/projects/") }} style="font-weight: bold;"{{ end }} href="/projects/">Projects</a>
               <ul>
-                <li><a href="/research/bgp-max-prefix/" title="BGP Maximum-Prefix Limits Impact Analysis">BGP Max Prefix Analysis</a></li>
-                <li><a href="/research/ran-sustainability/" title="An Evaluation of RAN Sustainability Strategies in Production Networks">RAN Sustainability Eval</a></li>
-                <li><a href="/research/mobile-demand-footprint/" title="Characterizing, Modeling and Exploiting the Mobile Demand Footprint of Large Public Protests">Mobile Demand @ Protests</a></li>
+                <li><a{{ if or (eq .Permalink "/projects/bgp-max-prefix/") (hasSuffix .Permalink "/projects/bgp-max-prefix/") }} style="font-weight: bold;"{{ end }} href="/projects/bgp-max-prefix/">BGP Max Prefix</a></li>
+                <li><a{{ if or (eq .Permalink "/projects/ran-energy-saving/") (hasSuffix .Permalink "/projects/ran-energy-saving/") }} style="font-weight: bold;"{{ end }} href="/projects/ran-energy-saving/">RAN Energy Saving</a></li>
+                <li><a{{ if or (eq .Permalink "/projects/ran-digital-twin/") (hasSuffix .Permalink "/projects/ran-digital-twin/") }} style="font-weight: bold;"{{ end }} href="/projects/ran-digital-twin/">RAN Digital Twin</a></li>
+                <li><a{{ if or (eq .Permalink "/projects/political-orientation/") (hasSuffix .Permalink "/projects/political-orientation/") }} style="font-weight: bold;"{{ end }} href="/projects/political-orientation/">Political Orientation</a></li>
+                <li><a{{ if or (eq .Permalink "/projects/netmob-dataset/") (hasSuffix .Permalink "/projects/netmob-dataset/") }} style="font-weight: bold;"{{ end }} href="/projects/netmob-dataset/">NetMob Dataset</a></li>
+                <li><a{{ if or (eq .Permalink "/projects/phd/") (hasSuffix .Permalink "/projects/phd/") }} style="font-weight: bold;"{{ end }} href="/projects/phd/">PhD</a></li>
               </ul>
             </li>
             <!-- Talks -->
-            <li{{ if in .Section "talks" }} style="font-weight: bold;"{{ end }}>
-              <a href="/talks/">Talks</a>
+            <li>
+              <a{{ if or (eq .Section "talks") (hasPrefix .RelPermalink "/talks/") }} style="font-weight: bold;"{{ end }} href="/talks/">Talks</a>
               <ul>
-                <li><a href="/talks/see-14/" title="BGP Maximum-Prefix Limits at SEE 14">SEE 14: BGP Max Prefix</a></li>
-                <li><a href="/talks/ripe-91/" title="RIPE 91">RIPE 91</a></li>
-                <li><a href="/talks/phd-defense/" title="PhD Defense: Understanding Societal Phenomena and Network Operations with Mobile Metadata">PhD Defense</a></li>
-                <li><a href="/talks/genai-networks/" title="Networking and GenAI Workshop">GenAI + Networking</a></li>
+                <li><a{{ if or (eq .Permalink "/talks/see-14/") (hasSuffix .Permalink "/talks/see-14/") }} style="font-weight: bold;"{{ end }} href="/talks/see-14/">SEE 14: BGP Max Prefix</a></li>
+                <li><a{{ if or (eq .Permalink "/talks/ripe-91/") (hasSuffix .Permalink "/talks/ripe-91/") }} style="font-weight: bold;"{{ end }} href="/talks/ripe-91/">RIPE 91</a></li>
+                <li><a{{ if or (eq .Permalink "/talks/genai-networks/") (hasSuffix .Permalink "/talks/genai-networks/") }} style="font-weight: bold;"{{ end }} href="/talks/genai-networks/">GenAI + Networking</a></li>
               </ul>
+            </li>
+            <!-- Teaching -->
+            <li{{ if in .Section "teaching" }} style="font-weight: bold;"{{ end }}>
+              <a href="/teaching/">Teaching</a>
+            </li>
+            <!-- Community -->
+            <li{{ if in .Section "community" }} style="font-weight: bold;"{{ end }}>
+              <a href="/community/">Community</a>
+            </li>
+            <!-- Media -->
+            <li{{ if in .Section "media" }} style="font-weight: bold;"{{ end }}>
+              <a href="/media/">Media</a>
+            </li>
+            <!-- Pics -->
+            <li{{ if in .Section "pics" }} style="font-weight: bold;"{{ end }}>
+              <a href="/pics/">Pics</a>
             </li>
             <!-- CV -->
             <li>

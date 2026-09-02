@@ -1,0 +1,15 @@
+{{ define "main" }}
+<div class="content-header">
+  <h1>{{ .Title }}</h1>
+</div>
+
+<article class="content-section">
+  <div class="bio">
+    {{ .Content }}
+  </div>
+</article>
+
+<div style="margin-top: calc(var(--line-height) * 2); text-align: center;">
+  <a href="/projects/">← Back to projects</a>
+</div>
+{{ end }}

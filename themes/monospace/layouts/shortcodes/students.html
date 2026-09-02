@@ -1,0 +1,10 @@
+{{ $students := slice
+  (dict "name" "Iga Miętkowska" "status" "Erasmus+ Intern" "institution" "Gdańsk University of Technology" "year" "Aug–Sep 2026" "topic" "Mobile Network Coverage Modelling via Machine Learning")
+  (dict "name" "Daniel Amaro" "status" "M.Sc." "institution" "University of Havana" "year" "2023–2024" "topic" "Trajectory Reconstruction from Mobile Traffic Metadata")
+  (dict "name" "Prashant Ray" "status" "M.Sc." "institution" "Politecnico di Torino" "year" "2023" "topic" "Land Use Detection through Matrix Decomposition")
+  (dict "name" "Theo Couturieux" "status" "Undergraduate" "institution" "l'ENSEEIHT" "year" "2020" "topic" "Beyond Voronoi: Probabilistic Spatial Coverage Inference")
+  (dict "name" "Roger Casimiro" "status" "Undergraduate" "institution" "Technological University José Antonio Echeverría" "year" "2019" "topic" "Human Mobility Using Mobile Phone Records")
+}}
+
+- {{ range $students }}**{{ .name }}** ({{ .status }}, {{ .institution }}, {{ .year }}) — {{ .topic }}{{ if ne (index $students (sub (len $students) 1)).name .name }}
+{{ end }}{{ end }}
