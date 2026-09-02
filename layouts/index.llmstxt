@@ -4,18 +4,21 @@
 
 ## About
 
-{{ .Content | plainify | truncate 300 }}
+{{ .Content | plainify }}
 
 ## Research
 
 {{ range where .Site.RegularPages "Section" "research" }}
-- {{ .Title }} ({{ .Date.Format "2006" }}) — {{ .Permalink }}
+- **{{ .Title }}** ({{ .Params.conference }}, {{ .Date.Format "January 2006" }})
+  {{ .Summary | plainify }}
+  Link: {{ .Permalink }}
 {{ end }}
 
 ## Talks
 
 {{ range where .Site.RegularPages "Section" "talks" }}
-- {{ .Title }} ({{ .Date.Format "2006" }}) — {{ .Permalink }}
+- **{{ .Title }}** ({{ .Params.conference }}, {{ .Date.Format "January 2006" }})
+  Link: {{ .Permalink }}
 {{ end }}
 
 ## Links

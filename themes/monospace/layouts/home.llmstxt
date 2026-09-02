@@ -1,0 +1,28 @@
+# {{ .Site.Title }}
+
+> {{ .Site.Params.title }} at IMDEA Networks and NetAI
+
+## About
+
+{{ .Content | plainify }}
+
+## Research
+
+{{ range where .Site.RegularPages "Section" "research" }}
+- **{{ .Title }}** ({{ .Params.conference }}, {{ .Date.Format "January 2006" }})
+  {{ .Summary | plainify }}
+  Link: {{ .Permalink }}
+{{ end }}
+
+## Talks
+
+{{ range where .Site.RegularPages "Section" "talks" }}
+- **{{ .Title }}** ({{ .Params.conference }}, {{ .Date.Format "January 2006" }})
+  Link: {{ .Permalink }}
+{{ end }}
+
+## Links
+
+- Google Scholar: {{ (index (where .Site.Params.social "name" "scholar") 0).url }}
+- Twitter: {{ (index (where .Site.Params.social "name" "x") 0).url }}
+- LinkedIn: {{ (index (where .Site.Params.social "name" "linkedin") 0).url }}

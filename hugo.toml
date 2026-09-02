@@ -5,7 +5,7 @@ theme = 'monospace'
 
 [params]
 name = 'Orlando E. Martínez-Durive'
-title = 'Networks Researcher'
+title = 'Senior ML Researcher at NetAI'
 
 [[params.social]]
 name = 'linkedin'
@@ -50,3 +50,4 @@ home = ['HTML', 'llmstxt']
 mediaType = 'text/plain'
 baseName = 'llms'
 isPlainText = true
+suffixes = ['txt']
