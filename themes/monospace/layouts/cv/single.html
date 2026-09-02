@@ -1,0 +1,15 @@
+{{ define "main" }}
+<div class="content-header">
+  <h1>{{ .Title }}</h1>
+</div>
+
+<article class="content-section">
+  {{ .Content }}
+
+  <div style="margin-top: calc(var(--line-height) * 3); padding-top: var(--line-height); border-top: 1px solid var(--text-color-alt);">
+    <a href="/cv.pdf" style="display: inline-block; padding: 0.5ch 1ch; border: 2px solid var(--accent-color); color: var(--accent-color); text-decoration: none; font-weight: 600; background: transparent; transition: all 0.2s;">
+      ↓ Download PDF
+    </a>
+  </div>
+</article>
+{{ end }}
