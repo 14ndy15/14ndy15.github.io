@@ -8,13 +8,13 @@
 
 ## Research
 
-{{ range (where .Site.RegularPages "Section" "research") | sort.ByParam "weight" }}
+{{ range where .Site.RegularPages "Section" "research" }}
 - {{ .Title }} ({{ .Date.Format "2006" }}) — {{ .Permalink }}
 {{ end }}
 
 ## Talks
 
-{{ range (where .Site.RegularPages "Section" "talks") | sort.ByParam "weight" }}
+{{ range where .Site.RegularPages "Section" "talks" }}
 - {{ .Title }} ({{ .Date.Format "2006" }}) — {{ .Permalink }}
 {{ end }}
 
