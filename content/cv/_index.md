@@ -20,9 +20,13 @@ Graduated Cum Laude with International Doctorate distinction.
 
 ## Professional Experience
 
-**2025**
+**2026 – Present**
 - **Senior ML Researcher** — NetAI, Edinburgh, Scotland  
   Developing AI/ML models for energy-efficient network operation, focusing on automated detection of underutilized resources and intelligent RAN control policies.
+
+**2025**
+- **ML Researcher** — NetAI, Edinburgh, Scotland  
+  Researching machine learning solutions for mobile network intelligence and optimization.
 - **Postdoctoral Researcher** — IMDEA Networks Institute, Madrid, Spain  
   Researching next-generation mobile architectures and interpretable AI/ML systems for reliable and sustainable 5G and B5G networks.
 
