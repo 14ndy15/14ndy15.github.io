@@ -341,6 +341,20 @@ hr {
   color: var(--text-color);
 }
 
+/* Smooth transition for details content */
+.nav-tree > ul {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  max-height: 1000px;
+  opacity: 1;
+}
+
+.nav-tree:not([open]) > ul {
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
 /* RESPONSIVE */
 @media (max-width: 1200px) {
   body {
