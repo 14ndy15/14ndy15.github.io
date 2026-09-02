@@ -6,5 +6,5 @@
   (dict "name" "Roger Casimiro" "status" "Undergraduate" "institution" "Technological University José Antonio Echeverría" "year" "2019" "topic" "Human Mobility Using Mobile Phone Records")
 }}
 
-- {{ range $students }}**{{ .name }}** ({{ .status }}, {{ .institution }}, {{ .year }}) — {{ .topic }}{{ if ne (index $students (sub (len $students) 1)).name .name }}
-{{ end }}{{ end }}
+{{ range $students }}- **{{ .name }}** ({{ .status }}, {{ .institution }}, {{ .year }}) — {{ .topic }}
+{{ end }}
