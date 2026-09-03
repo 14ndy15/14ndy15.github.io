@@ -4,7 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Only enable collapse on mobile
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
-  if (!isMobile) return;
+
+  // On desktop, keep navigation open by default
+  if (!isMobile) {
+    navTree.open = true;
+    return;
+  }
 
   // Close details when a navigation link is clicked (except the root ~)
   document.querySelectorAll('.nav-tree a:not(.nav-home)').forEach(link => {
