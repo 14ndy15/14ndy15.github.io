@@ -89,6 +89,13 @@ img.profile-pic {
   display: block;
 }
 
+.profile-pic-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .profile-name {
   font-weight: var(--font-weight-bold);
   font-size: 0.95rem;
@@ -321,7 +328,8 @@ hr {
 
 /* COLLAPSIBLE NAVIGATION */
 .nav-tree {
-  display: block;
+  display: flex;
+  justify-content: center;
 }
 
 .nav-tree summary {
