@@ -3,11 +3,11 @@ title: Home
 description: Orlando E. Martínez-Durive — Senior ML Researcher at NetAI
 ---
 
-I am a Senior ML Researcher at NetAI. Before that, I was a Postdoctoral Fellow in the Networks Data Science Group at IMDEA Networks Institute and an intern at Cisco Thousand Eyes. 
+I am a Senior ML Researcher at NetAI. Before that, I was a Postdoctoral Fellow in the Networks Data Science Group at IMDEA Networks Institute and an intern at Cisco ThousandEyes. 
 
 My PhD (Cum Laude) in Telematics Engineering at Carlos III University of Madrid explored how we can understand Societal Phenomena and optimize network operations through Mobile Network Metadata. During my doctoral research, I was a visiting researcher at Telefónica Innovación Digital and the Network Science Institute at Northeastern University. My research interests span network measurements, remote sensing, and ML/AI solutions—with a focus on energy-efficient RAN policies, mobile networks as sensors for social phenomena, and spatial analysis of urban dynamics.
 
-Some of my work has appeared in IEEE INFOCOM (x3), ACM IMC (x3), IEEE SECON (x2), and IEEE/IFIP TMA. For updated publications, [check my Google Scholar profile](https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID).
+Some of my work has appeared in IEEE INFOCOM (x3), ACM IMC (x3), IEEE SECON (x2), and IEEE/IFIP TMA. For updated publications, [check my Google Scholar profile](https://scholar.google.com/citations?user=VK4VVFwAAAAJ&hl=en).
 
 ## News
 
