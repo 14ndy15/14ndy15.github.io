@@ -364,6 +364,14 @@ hr {
   color: var(--text-color);
 }
 
+/* Mobile: left-align navigation */
+@media (max-width: 768px) {
+  .nav-tree {
+    display: block;
+    justify-content: flex-start;
+  }
+}
+
 /* Hide summary on desktop */
 @media (min-width: 768px) {
   .nav-tree summary {
