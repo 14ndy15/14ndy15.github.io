@@ -95,10 +95,17 @@ img.profile-pic {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 10;
 }
 
 .profile-pic-link:hover {
   opacity: 0.8;
+}
+
+.profile-pic-link img {
+  pointer-events: auto;
 }
 
 .profile-name {
